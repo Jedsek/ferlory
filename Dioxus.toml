@@ -1,4 +1,5 @@
 [application]
+asset_dir = "assets"
 
 [web.app]
 
@@ -20,6 +21,10 @@ script = []
 # serve: [dev-server] only
 script = []
 
+# [[web.proxy]]
+# backend = "http://localhost:8000/api/"
+
 
 [web.watcher]
-watch_path = ["src", "public", "assets"]
+watch_path = ["src", "public", "assets/content/home.html"]
+

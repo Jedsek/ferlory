@@ -7,8 +7,14 @@
 
 #show: template
 
+// #set math.equation.content(fill: red)
+#set text(
+  fill: white,
+  size: 2em,
+  weight: "extrabold"
+)
 
-= Introduction
+= Introdu
 In this report, we will explore the
 various factors that influence _fluid
 dynamics_ in glaciers and how they
@@ -22,3 +28,4 @@ $ 7.32 beta +
     (Q_i (a_i - epsilon)) / 2 $
 
 你好
+->
