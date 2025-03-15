@@ -8,7 +8,7 @@ My personal new generation blog, based on [Dioxus](https://dioxuslabs.com/)
 This is also a learning tour/challenge:  
 - using `rand` in wasm32-unknown-unknown (dependencies problem)  
 - making `vnode placeholder` div in dioxus  
-- parsing `typst` && `makrdown`
+- parsing `typst`(for mathematical formulas) && `makrdown`
 - tailwind-css
 - rewriting all posts in pure rust (RIIR :))  
 - responsive layouts for phones, tablets, PCs  
