@@ -1,8 +1,6 @@
 use crate::components::Avatar;
-// use const_format::concatcp;
-
 use dioxus::prelude::*;
-use include_dir::{include_dir, Dir};
+// use const_format::concatcp;
 
 #[component]
 pub fn Home() -> Element {

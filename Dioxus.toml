@@ -23,8 +23,3 @@ script = []
 
 # [[web.proxy]]
 # backend = "http://localhost:8000/api/"
-
-
-[web.watcher]
-watch_path = ["src", "public", "assets/content/home.html"]
-

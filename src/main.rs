@@ -5,6 +5,10 @@ mod utils;
 use dioxus::prelude::*;
 use route::Route;
 
+const TAILWIND_CSS: Asset = asset!("/assets/styles/tailwind.css");
+const STYLE_CSS: Asset = asset!("/assets/styles/fonts.css");
+const TYPST_CSS: Asset = asset!("/assets/styles/typst.css");
+
 const _: Asset = asset!("/assets/fonts/MapleMono-Woff2/MapleMono-Regular.woff2");
 const _: Asset = asset!("/assets/fonts/MapleMono-Woff2/MapleMono-Bold.woff2");
 const _: Asset = asset!("/assets/fonts/MapleMono-Woff2/MapleMono-BoldItalic.woff2");
@@ -23,18 +27,15 @@ const _: Asset = asset!("/assets/fonts/MapleMono-Woff2/MapleMono-SemiBoldItalic.
 const _: Asset = asset!("/assets/fonts/MapleMono-Woff2/MapleMono-Thin.woff2");
 const _: Asset = asset!("/assets/fonts/MapleMono-Woff2/MapleMono-ThinItalic.woff2");
 
-const STYLE_CSS: Asset = asset!("/assets/styles/fonts.css", CssAssetOptions::new().with_preload(true));
-const TAILWIND_CSS: Asset = asset!("/assets/styles/tailwind.css", CssAssetOptions::new().with_preload(true));
-const TYPST_CSS: Asset = asset!("/assets/styles/typst.css", CssAssetOptions::new().with_preload(true));
 
 
 fn main() {
     utils::launch_app(|| {
         rsx! {
+            Router<Route> {}
             document::Stylesheet { href: "{TAILWIND_CSS}" }
             document::Stylesheet { href: "{STYLE_CSS}" }
             document::Stylesheet { href: "{TYPST_CSS}" }
-            Router<Route> {}
         }
     })
 }
