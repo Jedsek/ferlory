@@ -1,8 +1,8 @@
 mod placeholder;
 pub use placeholder::Placeholder;
 
-mod avatar;
-pub use avatar::Avatar;
+mod profile;
+pub use profile::Profile;
 
 mod sidebar;
 pub use sidebar::Sidebar;

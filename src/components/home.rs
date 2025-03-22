@@ -1,4 +1,4 @@
-use crate::components::Avatar;
+use crate::components::Profile;
 use dioxus::prelude::*;
 // use const_format::concatcp;
 
@@ -9,7 +9,7 @@ pub fn Home() -> Element {
     // let a = dir.get_file(_A.resolve().strip_prefix("/assets").to_str().unwrap()).unwrap();
 
     rsx! {
-        Avatar {}
+        Profile {}
         div { dangerous_inner_html: include_str!("../../assets/content/home.html") }
     }
 }
