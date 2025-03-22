@@ -1,3 +1,6 @@
+mod placeholder;
+pub use placeholder::Placeholder;
+
 mod avatar;
 pub use avatar::Avatar;
 
