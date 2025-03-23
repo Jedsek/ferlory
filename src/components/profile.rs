@@ -67,15 +67,20 @@ fn Info() -> Element {
 
 #[component]
 fn Navigation() -> Element {
+    let mut text = use_signal(|| rsx! {""});
+
     rsx! {
         div {
-            class: "group h-fit my-4 py-4 border-y-2 border-dashed border-purple-400",
+            class: "group h-fit my-4 pt-2 pb-4 border-y-2 border-dashed border-purple-400",
             class: "sm:my-0 sm:py-0 sm:mx-10 sm:border-l-3 sm:border-y-0",
             p {
                 class: "duration-100 w-fit mx-auto sm:ml-3 sm:py-3 text-4xl! font-semibold",
-                class: "bg-gradient-to-r bg-clip-text from-sky-400/90 to-purple-600/100 text-transparent",
-                span { "GOTO" }
-                span { class: "hidden text-sky-500 group-hover:inline", ">>" }
+                span {
+                    class: "bg-gradient-to-r bg-clip-text from-sky-400/90 to-purple-600/100 text-transparent",
+                    span { "GOTO" }
+                    span { class: "hidden group-hover:inline", ">> " }
+                }
+                span { class: "hidden italic text-fuchsia-400 sm:group-hover:inline", {text} }
             }
             div {
                 class: "grid grid-rows-2 grid-flow-col w-fit mx-auto *:m-1",
@@ -84,27 +89,27 @@ fn Navigation() -> Element {
                 class: "*:text-2xl! *:flex *:flex-row *:items-center *:justify-center *:p-1",
                 class: "*:[&div_i]:mx-1 *:[&div_i]:text-3xl! *:[&div_i]:group-hover:animate-spin",
                 class: "*:hover:scale-110 *:hover:opacity-70 *:hover:duration-200 *:odd:hover:-translate-y-2 *:even:hover:translate-y-2",
-                div { class: "group",
+                div { class: "group", onmouseover: move |_data| { text.set(rsx!{"/home"}) },
                     i { class: "iconfont icon-home" }
                     Link { to: Route::Home {}, "首页" }
                 }
-                div { class: "group",
+                div { class: "group", onmouseover: move |_data| { text.set(rsx!{"/programming"}) },
                     i { class: "iconfont icon-code" }
                     Link { to: Route::Programming {}, "编程" }
                 }
-                div { class: "group",
+                div { class: "group", onmouseover: move |_data| { text.set(rsx!{"/about"}) },
                     i { class: "iconfont icon-about" }
                     Link { to: Route::About {}, "关于" }
                 }
-                div { class: "group",
+                div { class: "group", onmouseover: move |_data| { text.set(rsx!{"/fantasy"}) },
                     i { class: "iconfont icon-flower" }
                     Link { to: Route::Fantasy {}, "幻想" }
                 }
-                div { class: "group",
+                div { class: "group", onmouseover: move |_data| { text.set(rsx!{"/friends"}) },
                     i { class: "iconfont icon-love" }
                     Link { to: Route::Friends {}, "友链" }
                 }
-                div { class: "group",
+                div { class: "group", onmouseover: move |_data| { text.set(rsx!{del {"/error"}}) },
                     i { class: "iconfont icon-error" }
                     Link { to: Route::ErrorPage {}, del { "错误" } }
                 }
