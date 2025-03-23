@@ -16,6 +16,12 @@ pub use programming::Programming;
 mod fantasy;
 pub use fantasy::Fantasy;
 
+mod friends;
+pub use friends::Friends;
+
+mod about;
+pub use about::About;
+
 mod error_page;
 pub use error_page::ErrorPage;
 

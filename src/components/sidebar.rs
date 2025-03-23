@@ -5,7 +5,7 @@ use dioxus::prelude::*;
 pub fn Sidebar() -> Element {
     rsx! {
         nav {
-            ul { class: "flex *:p-1 *:hover:underline",
+            ul { class: "flex flex-row *:m-1 *:hover:underline",
                 li { Link { to: Route::Home {}, "首页" } },
                 li { Link { to: Route::Programming {}, "编程" } },
                 li { Link { to: Route::Fantasy {}, "幻想" } },

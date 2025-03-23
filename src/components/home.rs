@@ -10,6 +10,9 @@ pub fn Home() -> Element {
 
     rsx! {
         Profile {}
-        div { dangerous_inner_html: include_str!("../../assets/content/home.html") }
+        div { class: "text-lg",
+            p { "大家好" }
+            div { dangerous_inner_html: include_str!("../../assets/content/home.html") }
+        }
     }
 }
