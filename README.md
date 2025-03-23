@@ -3,7 +3,7 @@
 My personal new generation blog, based on [Dioxus](https://dioxuslabs.com/)  
 (WIP, very initially.)  
 
-<!-- ![wip](./screenshots/dev_1.webp) -->
+![wip](./screenshots/dev_1.webp)
 
 This is also a learning tour/challenge:  
 - using `rand` in wasm32-unknown-unknown (dependencies problem)  
