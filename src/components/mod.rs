@@ -1,3 +1,5 @@
+#![allow(unused)]
+
 mod placeholder;
 pub use placeholder::Placeholder;
 
@@ -27,3 +29,6 @@ pub use error_page::ErrorPage;
 
 mod page_not_found;
 pub use page_not_found::Other;
+
+mod notify;
+pub use notify::Notify;

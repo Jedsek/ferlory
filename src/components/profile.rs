@@ -1,5 +1,3 @@
-#![allow(non_upper_case_globals)]
-
 use crate::route::Route;
 use dioxus::prelude::*;
 
@@ -23,20 +21,17 @@ pub fn Profile() -> Element {
 
 #[component]
 fn Avatar() -> Element {
-    const AVATAR: Asset = asset!("/assets/images/avatar.avif");
-    const AVATAR_BORDER: Asset = asset!("/assets/images/avatar_border.avif");
-
     rsx! {
         div {
             class: "flex justify-center h-fit hover:animate-bounce",
             class: "sm:justify-start ",
             a {
+                href: "/about",
                 class: "w-50 sm:w-60 flex justify-center items-center relative group",
                 class: "duration-200 hover:scale-110 sm:hover:scale-90 hover:rotate-12 sm:hover:-rotate-12 hover:opacity-80",
-                href: "/programming",
-                img { class: "w-40 sm:w-50", src: "{AVATAR}"  }
-                img { class: "w-50 sm:w-60 absolute", src: "{AVATAR_BORDER}"  }
-                i { class: "text-6xl! text-black opacity-60 iconfont icon-restart absolute hidden group-hover:inline" }
+                img { class: "w-40 sm:w-50", src: asset!("/assets/images/avatar.avif") }
+                img { class: "w-50 sm:w-60 absolute", src: asset!("/assets/images/avatar_border.avif") }
+                i { class: "text-6xl! text-black opacity-60 iconfont icon-restart absolute hidden group-hover:inline animate-spin" }
             }
         }
     }
@@ -56,10 +51,10 @@ fn Info() -> Element {
             div {
                 class: "sm:mx-0 sm:pt-3 sm:h-fit *:text-lg! *:italic *:text-slate-400",
                 class: "*:[&p_span]:last:hover:underline",
-                p { span { "-->" } span { "与其浊富, 宁比清贫" } }
-                p { span { "~~>" } span { "cosplay堂吉珂德" } }
-                p { span { "==>" } span { "加缪式钢铁活法" } }
-                p { span { ">>>" } span { "galgame!!!" } }
+                p { span { "--> " } span { "与其浊富, 宁比清贫" } }
+                p { span { "~~> " } span { "cosplay堂吉珂德" } }
+                p { span { "==> " } span { "加缪式钢铁活法" } }
+                p { span { ">>> " } span { "galgame!!!" } }
             }
         }
     }
@@ -67,49 +62,54 @@ fn Info() -> Element {
 
 #[component]
 fn Navigation() -> Element {
-    let mut text = use_signal(|| rsx! {""});
+    let mut text: Signal<std::option::Option<&'static str>> = use_signal(|| None);
 
     rsx! {
         div {
-            class: "group h-fit my-4 pt-2 pb-4 border-y-2 border-dashed border-purple-400",
+            class: "h-fit my-4 pt-2 pb-4 border-y-2 border-dashed border-purple-400",
             class: "sm:my-0 sm:py-0 sm:mx-10 sm:border-l-3 sm:border-y-0",
-            p {
-                class: "duration-100 w-fit mx-auto sm:ml-3 sm:py-3 text-4xl! font-semibold",
-                span {
-                    class: "bg-gradient-to-r bg-clip-text from-sky-400/90 to-purple-600/100 text-transparent",
-                    span { "GOTO" }
-                    span { class: "hidden group-hover:inline", ">> " }
+            p { class: "duration-100 w-fit mx-auto sm:ml-3 sm:py-3 text-4xl! font-semibold",
+                span { class: "bg-gradient-to-r bg-clip-text from-sky-400/90 to-purple-600/100 text-transparent",
+                    match *text.read() {
+                        None => rsx! { "GOTO" },
+                        Some(text) => rsx! {
+                            ">> ",
+                            span { class: "italic text-fuchsia-400",
+                                if text == "/error" { del { "{text}" } } else { "{text}" }
+                            }
+                        },
+                    }
                 }
-                span { class: "hidden italic text-fuchsia-400 sm:group-hover:inline", {text} }
             }
             div {
+                onmouseleave: move |_data| { text.set(None) },
                 class: "grid grid-rows-2 grid-flow-col w-fit mx-auto *:m-1",
                 class: "sm:ml-4",
                 class: "*:border-2 *:border-sky-600 *:rounded-sm",
                 class: "*:text-2xl! *:flex *:flex-row *:items-center *:justify-center *:p-1",
-                class: "*:[&div_i]:mx-1 *:[&div_i]:text-3xl! *:[&div_i]:group-hover:animate-spin",
+                class: "*:[&div_i]:mx-1 *:[&div_i]:text-3xl!",
                 class: "*:hover:scale-110 *:hover:opacity-70 *:hover:duration-200 *:odd:hover:-translate-y-2 *:even:hover:translate-y-2",
-                div { class: "group", onmouseover: move |_data| { text.set(rsx!{"/home"}) },
+                div { onmouseover: move |_data| { text.set(Some("/home")) },
                     i { class: "iconfont icon-home" }
                     Link { to: Route::Home {}, "首页" }
                 }
-                div { class: "group", onmouseover: move |_data| { text.set(rsx!{"/programming"}) },
+                div { onmouseover: move |_data| { text.set(Some("/programming")) },
                     i { class: "iconfont icon-code" }
                     Link { to: Route::Programming {}, "编程" }
                 }
-                div { class: "group", onmouseover: move |_data| { text.set(rsx!{"/about"}) },
+                div { onmouseover: move |_data| { text.set(Some("/about")) },
                     i { class: "iconfont icon-about" }
                     Link { to: Route::About {}, "关于" }
                 }
-                div { class: "group", onmouseover: move |_data| { text.set(rsx!{"/fantasy"}) },
+                div { onmouseover: move |_data| { text.set(Some("/fantasy")) },
                     i { class: "iconfont icon-flower" }
                     Link { to: Route::Fantasy {}, "幻想" }
                 }
-                div { class: "group", onmouseover: move |_data| { text.set(rsx!{"/friends"}) },
+                div { onmouseover: move |_data| { text.set(Some("/friends")) },
                     i { class: "iconfont icon-love" }
                     Link { to: Route::Friends {}, "友链" }
                 }
-                div { class: "group", onmouseover: move |_data| { text.set(rsx!{del {"/error"}}) },
+                div { onmouseover: move |_data| { text.set(Some("/error")) },
                     i { class: "iconfont icon-error" }
                     Link { to: Route::ErrorPage {}, del { "错误" } }
                 }

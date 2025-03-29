@@ -3,15 +3,16 @@ mod route;
 mod utils;
 
 use dioxus::prelude::*;
+use components::Notify;
 use route::Route;
 
+const MAIN_CSS: Asset = asset!("/assets/styles/main.css");
 const TAILWIND_CSS: Asset = asset!("/assets/styles/tailwind.css");
 const FONT_CSS: Asset = asset!("/assets/styles/fonts.css");
 const ICONFONT_CSS: Asset = asset!("/assets/iconfonts/iconfont.css");
 const TYPST_CSS: Asset = asset!("/assets/styles/typst.css");
 
 const _: Asset = asset!("/assets/iconfonts/iconfont.woff2");
-
 const _: Asset = asset!("/assets/fonts/MapleMono-Woff2/MapleMono-Regular.woff2");
 const _: Asset = asset!("/assets/fonts/MapleMono-Woff2/MapleMono-Bold.woff2");
 const _: Asset = asset!("/assets/fonts/MapleMono-Woff2/MapleMono-BoldItalic.woff2");
@@ -29,11 +30,16 @@ const _: Asset = asset!("/assets/fonts/MapleMono-Woff2/MapleMono-SemiBoldItalic.
 fn main() {
     utils::launch_app(|| {
         rsx! {
-            Router<Route> {}
+            document::Title { "柳下川的博客" }
+            document::Link { rel: "shortcut icon", href: asset!("/assets/images/avatar.avif"), type: "image/x-icon" }
+            document::Stylesheet { href: "{MAIN_CSS}" }
             document::Stylesheet { href: "{TAILWIND_CSS}" }
             document::Stylesheet { href: "{FONT_CSS}" }
             document::Stylesheet { href: "{ICONFONT_CSS}" }
             document::Stylesheet { href: "{TYPST_CSS}" }
+
+            Notify { }
+            Router<Route> {}
         }
     })
 }
