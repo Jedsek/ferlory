@@ -15,7 +15,8 @@ pub fn Home() -> Element {
 
         div { class: "min-h-screen",
             div { "=> 随意探索吧!! " "可能会有" span { class: "font-bold", " 惊喜 " } "哦~" }
-            div { "这个博客本身就是一个 rust 的项目: " a { class: "hover:underline",  href: "https://github/jedsek/ferlory" } "https://github/jedsek/ferlory" }
+            div { "=> 这个博客本身就是一个 rust 项目: "
+                a { href: "https://github.com/jedsek/ferlory", "https://github.com/jedsek/ferlory" } }
 
 
             Details {

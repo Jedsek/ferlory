@@ -8,7 +8,7 @@ edition = "2024"
 
 [dependencies]
 const_format = { version = "0.2.34", features = ["fmt"] }
-dioxus = { version = "0.6.3", features = ["fullstack", "router"] }
+dioxus = { git = "https://github.com/DioxusLabs/dioxus", features = ["fullstack", "router"] }
 # include_dir = "0.7.4"
 # manganis = "0.6.2"
 # rand = "0.9"

@@ -7,6 +7,10 @@ body {
 	@apply bg-ink-purple;
 }
 
+a {
+	@apply underline;
+}
+
 p {
 	@apply m-4;
 }

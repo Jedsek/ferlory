@@ -90,7 +90,7 @@ fn Navigation() -> Element {
                 },
                 class: "grid grid-rows-2 grid-flow-col w-fit mx-auto *:m-1",
                 class: "sm:ml-4",
-                class: "*:border-2 *:border-sky-600 *:rounded-sm",
+                class: "*:border-2 *:border-sky-600 *:rounded-sm **:no-underline!",
                 class: "*:text-2xl! *:flex *:flex-row *:items-center *:justify-center *:p-1",
                 class: "*:[&div_a_i]:mx-1 *:[&div_a_i]:text-2xl!",
                 class: "*:hover:scale-110 *:hover:opacity-70 *:hover:duration-200 *:odd:hover:-translate-y-2 *:even:hover:translate-y-2",
@@ -143,7 +143,7 @@ pub fn NavigationItem(tip_route: &'static str, tip_text: &'static str, children:
                 notify_send(None, Some(0));
             },
             onclick: move |_data| {
-                notify_send(None, Some(2000));
+                notify_send(None, Some(1500));
             },
             {children}
         }
