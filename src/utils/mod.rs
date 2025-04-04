@@ -1,4 +1,6 @@
 use dioxus::prelude::*;
+use gloo::timers::callback::Timeout;
+use crate::components::STATE;
 use std::path::{Path, PathBuf};
 
 #[allow(unused)]
@@ -56,30 +58,18 @@ pub fn launch_app(app: fn() -> Element) {
         .launch(app);
 }
 
-#[allow(unused)]
-pub fn notify_send(content: &str, timeout_ms: usize) -> document::Eval {
-    let js = format!(r#"
-let last_timeout_id = null
-
-function notify_send(content, timeout) {{
-	if (last_timeout_id !== null) {{
-		clearTimeout(last_timeout_id)
-	}}
-	
-	const notification = document.querySelector(".notification");
-	const notification_content = document.querySelector(".notification-content");
-
-	notification.style.visibility = "visible"
-  notification_content.textContent = content
-
-  last_timeout_id = setTimeout(async () => {{ notification.style.visibility = "hidden" }}, timeout)
-}}
-
-addEventListener("copy", (_event) => {{
-	notify_send("喂, 文本已经复制好了", 2000)
-}});
-"#);
-    document::eval(r#"
-"#)
+pub fn notify_send(content: Option<&'static str>, timeout_ms: Option<u32>) {
+    STATE.write().hidden = false;
+    if let Some(content) = content {
+        STATE.write().content = content.into();
+    }
+    match timeout_ms {
+        None => STATE.write().timeout_handle = None,
+        Some(timeout_ms) =>  {
+            STATE.write().timeout_handle = Some(Timeout::new(timeout_ms, || {
+            STATE.write().hidden = true;
+        }))},
+    }
 
 }
+

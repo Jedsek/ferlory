@@ -1,5 +1,6 @@
-use crate::{components::notify::notify_send, route::Route};
 use dioxus::prelude::*;
+use crate::utils::notify_send;
+use crate::route::Route;
 
 #[component]
 pub fn Profile() -> Element {
@@ -51,10 +52,10 @@ fn Info() -> Element {
             div {
                 class: "sm:mx-0 sm:pt-3 sm:h-fit *:text-lg! *:italic *:text-slate-400",
                 class: "*:[&p_span]:last:hover:underline",
-                p { span { "--> " } span { "与其浊富, 宁比清贫" } }
-                p { span { "==> " } span { "cosplay堂吉珂德" } }
-                p { span { "=== " } span { "加缪式钢铁活法" } }
-                p { span { ">>> " } span { "galgame!!!" } }
+                div { span { "--> " } span { "与其浊富, 宁比清贫" } }
+                div { span { "==> " } span { "cosplay堂吉珂德" } }
+                div { span { "=== " } span { "加缪式钢铁活法" } }
+                div { span { ">>> " } span { "galgame!!!" } }
             }
         }
     }
@@ -92,62 +93,62 @@ fn Navigation() -> Element {
                 class: "*:[&div_i]:mx-1 *:[&div_i]:text-3xl!",
                 class: "*:hover:scale-110 *:hover:opacity-70 *:hover:duration-200 *:odd:hover:-translate-y-2 *:even:hover:translate-y-2",
                 div {
-                    onmouseover: move |_data| {
+                    onmouseenter: move |_data| {
                         text.set(Some("/home"));
-                        notify_send("那是段很让人怀念的时光呢", None);
+                        notify_send(Some("那是段很让人怀念的时光呢"), None);
                     },
                     onmouseleave: move |_data| {
-                        notify_send("", Some(0));
+                        notify_send(None, Some(0));
                     },
                     Link { to: Route::Moments {}, i { class: "iconfont icon-chat text-sky-500" } "动态" }
                 }
                 div {
-                    onmouseover: move |_data| {
+                    onmouseenter: move |_data| {
                         text.set(Some("/programming"));
-                        notify_send("别指望我能帮你什么...\n自己解决!", None);
+                        notify_send(Some("别指望我能帮你什么...\n自己解决!"), None);
                     },
                     onmouseleave: move |_data| {
-                        notify_send("", Some(0));
+                        notify_send(None, Some(0));
                     },
                     Link { to: Route::Programming {}, i { class: "iconfont icon-code text-sky-500" } "编程" }
                 }
                 div {
-                    onmouseover: move |_data| {
+                    onmouseenter: move |_data| {
                         text.set(Some("/about"));
-                        notify_send("哦? 原来你————", None);
+                        notify_send(Some("哦? 原来你————"), None);
                     },
                     onmouseleave: move |_data| {
-                        notify_send("", Some(0));
+                        notify_send(None, Some(0));
                     },
                     Link { to: Route::About {}, i { class: "iconfont icon-about text-sky-500" } "关于" }
                 }
                 div {
-                    onmouseover: move |_data| {
+                    onmouseenter: move |_data| {
                         text.set(Some("/fantasy"));
-                        notify_send("有点意思, 嗯, 不错", None);
+                        notify_send(Some("有点意思, 嗯, 不错"), None);
                     },
                     onmouseleave: move |_data| {
-                        notify_send("", Some(0));
+                        notify_send(None, Some(0));
                     },
                     Link { to: Route::Fantasy {}, i { class: "iconfont icon-flower text-sky-500" } "幻想" }
                 }
                 div {
-                    onmouseover: move |_data| {
+                    onmouseenter: move |_data| {
                         text.set(Some("/friends"));
-                        notify_send("喂, 这次我来请你喝酒\n就当是上一次的回礼吧", None);
+                        notify_send(Some("喂, 这次我来请你喝酒\n就当是上一次的回礼吧"), None);
                     },
                     onmouseleave: move |_data| {
-                        notify_send("", Some(0));
+                        notify_send(None, Some(0));
                     },
                     Link { to: Route::Friends {}, i { class: "iconfont icon-love text-red-400" } "友链" }
                 }
                 div {
-                    onmouseover: move |_data| {
+                    onmouseenter: move |_data| {
                         text.set(Some("/error"));
-                        notify_send("一股非常不妙的气息...", None);
+                        notify_send(Some("一股非常不妙的气息..."), None);
                     },
                     onmouseleave: move |_data| {
-                        notify_send("", Some(0));
+                        notify_send(None, Some(0));
                     },
                     Link { to: Route::ErrorPage {}, i { class: "iconfont icon-error text-slate-500" } del { "错误" } }
                 }

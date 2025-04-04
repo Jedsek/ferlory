@@ -1,28 +1,14 @@
-use dioxus::{logger::tracing::{self, trace}, prelude::*};
-use dioxus_elements::track;
+use dioxus::prelude::*;
 use gloo::timers::callback::Timeout;
 
-struct State {
-    content: String,
-    hidden: bool,
-    timeout_ms: u32,
-    timeout_handle: Option<Timeout>,
+pub struct State {
+    pub content: String,
+    pub hidden: bool,
+    pub timeout_ms: u32,
+    pub timeout_handle: Option<Timeout>,
 }
 
-pub fn notify_send<T: Into<String>>(content: T, timeout_ms: Option<u32>) {
-    STATE.write().hidden = false;
-    STATE.write().content = content.into();
-    match timeout_ms {
-        Some(timeout_ms) =>  {
-            STATE.write().timeout_handle = Some(Timeout::new(timeout_ms, || {
-            STATE.write().hidden = true;
-        }))},
-        None => ()
-    }
-
-}
-
-static STATE: GlobalSignal<State> =
+pub static STATE: GlobalSignal<State> =
     Global::new(|| State {
         content: "".into(),
         hidden: true,
@@ -34,12 +20,15 @@ static STATE: GlobalSignal<State> =
 pub fn Notification() -> Element {
     let opacity = if STATE.read().hidden { "opacity-0" } else { "opacity-100" };
     rsx! {
-        div { class: "{opacity} pointer-events-none fixed top-3 right-3 flex border-[#d08770] border-2 w-fit min-w-70 max-h-25 py-1",
-            img { class: "mx-1 w-20 my-auto", src: asset!("/assets/images/mokou.avif") }
-            div { class: "flex flex-col",
-                span { class: "text-2xl", " 藤原妹红: " }
-                span { class: "text-lg pr-2 my-auto whitespace-pre", {STATE.read().content.clone()} }
+        div {
+            class: "hidden lg:flex {opacity}",
+            class: "border-l-3 bg-slate-800 pointer-events-none fixed top-6 right-6 w-fit min-w-70 max-h-25 py-1",
+            class: "transition-opacity duration-300 ease-in-out",
+            div { class: "px-2 flex flex-col justify-content-end",
+                span { class: "text-2xl italic bold", " 藤原妹红:" }
+                span { class: "text-xl my-auto whitespace-pre", {STATE.read().content.clone()} }
             }
+            img { class: " border-warm-orange border-2 mx-1 w-25 my-auto", src: asset!("/assets/images/mokou.avif") }
         }
     }
 }

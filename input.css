@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import "./assets/styles/main.css";
 
 /*
   The default border color has changed to `currentColor` in Tailwind CSS v4,
@@ -16,4 +17,9 @@
   ::file-selector-button {
     border-color: var(--color-gray-200, currentColor);
   }
+}
+
+@theme {
+  --color-ink-purple: #2c2832;
+  --color-warm-orange: #d08770;
 }

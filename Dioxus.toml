@@ -6,14 +6,13 @@ asset_dir = "assets"
 # HTML title tag content
 title = "ferlora"
 
-# include `assets` in web platform
-[web.resource]
-
-# Additional CSS style files
-style = []
-
-# Additional JavaScript files
-script = []
+[web.watcher]
+watch_path = [
+  "src",
+  "assets",
+  "input.css",
+  "Dioxus.toml"
+]
 
 [web.resource.dev]
 

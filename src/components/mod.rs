@@ -35,3 +35,4 @@ pub use page_not_found::Other;
 
 mod notify;
 pub use notify::Notification;
+pub use notify::STATE;

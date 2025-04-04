@@ -6,7 +6,6 @@ use dioxus::prelude::*;
 use components::Notification;
 use route::Route;
 
-const MAIN_CSS: Asset = asset!("/assets/styles/main.css");
 const TAILWIND_CSS: Asset = asset!("/assets/styles/tailwind.css");
 const ICONFONT_CSS: Asset = asset!("/assets/iconfonts/iconfont.css");
 const TYPST_CSS: Asset = asset!("/assets/styles/typst.css");
@@ -16,7 +15,6 @@ fn main() {
         rsx! {
             document::Title { "柳下川的博客" }
             document::Link { rel: "shortcut icon", href: asset!("/assets/images/avatar.avif"), type: "image/x-icon" }
-            document::Stylesheet { href: "{MAIN_CSS}" }
             document::Stylesheet { href: "{TAILWIND_CSS}" }
             document::Stylesheet { href: "{ICONFONT_CSS}" }
             document::Stylesheet { href: "{TYPST_CSS}" }
