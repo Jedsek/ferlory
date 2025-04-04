@@ -12,6 +12,9 @@ pub use sidebar::Sidebar;
 mod home;
 pub use home::Home;
 
+mod moments;
+pub use moments::Moments;
+
 mod programming;
 pub use programming::Programming;
 
@@ -31,4 +34,4 @@ mod page_not_found;
 pub use page_not_found::Other;
 
 mod notify;
-pub use notify::Notify;
+pub use notify::Notification;

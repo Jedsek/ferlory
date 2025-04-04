@@ -1,5 +1,6 @@
 assets/content
-assets/fonts
+assets/iconfonts
+assets/fonts/*/*.woff2
 assets/images
 assets/favicon.ico
 assets/header.svg

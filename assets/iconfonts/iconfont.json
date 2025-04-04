@@ -6,6 +6,20 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "12932096",
+      "name": "l-love",
+      "font_class": "love",
+      "unicode": "e799",
+      "unicode_decimal": 59289
+    },
+    {
+      "icon_id": "2515701",
+      "name": "about-o",
+      "font_class": "about",
+      "unicode": "e7a7",
+      "unicode_decimal": 59303
+    },
+    {
       "icon_id": "4628934",
       "name": "重启",
       "font_class": "restart",
@@ -109,20 +123,6 @@
       "font_class": "arrow-left",
       "unicode": "e685",
       "unicode_decimal": 59013
-    },
-    {
-      "icon_id": "8288959",
-      "name": "爱心",
-      "font_class": "love",
-      "unicode": "e85c",
-      "unicode_decimal": 59484
-    },
-    {
-      "icon_id": "2515702",
-      "name": "关于",
-      "font_class": "about",
-      "unicode": "e7a6",
-      "unicode_decimal": 59302
     },
     {
       "icon_id": "7193668",
