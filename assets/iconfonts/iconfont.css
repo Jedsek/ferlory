@@ -1,6 +1,6 @@
 @font-face {
   font-family: "iconfont"; /* Project id 2857321 */
-  src: url('/assets/iconfonts/iconfont.woff2?t=1743689753029') format('woff2'),
+  src: url('/assets/iconfonts/iconfont.woff2?t=1743764493484') format('woff2'),
 }
 
 .iconfont {
@@ -19,6 +19,10 @@
   content: "\e7a7";
 }
 
+.icon-arrow-down:before {
+  content: "\ed1b";
+}
+
 .icon-restart:before {
   content: "\e658";
 }
@@ -31,7 +35,7 @@
   content: "\e618";
 }
 
-.icon-arrow-down:before {
+.icon-arrow-right:before {
   content: "\e688";
 }
 
@@ -71,11 +75,11 @@
   content: "\e66d";
 }
 
-.icon-arrow-right:before {
+.icon-arrow-right-thin:before {
   content: "\e687";
 }
 
-.icon-arrow-left:before {
+.icon-arrow-left-thin:before {
   content: "\e685";
 }
 

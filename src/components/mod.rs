@@ -1,6 +1,9 @@
-#![allow(unused)]
+// #![allow(unused)]
+
+mod posts;
 
 mod placeholder;
+#[allow(unused)]
 pub use placeholder::Placeholder;
 
 mod profile;

@@ -51,7 +51,8 @@ fn Info() -> Element {
             }
             div {
                 class: "sm:mx-0 sm:pt-3 sm:h-fit *:text-lg! *:italic *:text-slate-400",
-                class: "*:[&p_span]:last:hover:underline",
+                class: "*:[&div_span]:last:hover:underline",
+                class: "*:[&div_span]:last:hover:underline",
                 div { span { "--> " } span { "与其浊富, 宁比清贫" } }
                 div { span { "==> " } span { "cosplay堂吉珂德" } }
                 div { span { "=== " } span { "加缪式钢铁活法" } }
@@ -63,7 +64,8 @@ fn Info() -> Element {
 
 #[component]
 fn Navigation() -> Element {
-    let mut text: Signal<std::option::Option<&'static str>> = use_signal(|| None);
+    let mut state: Signal<Option<&'static str>> = use_signal(|| None);
+    use_context_provider(|| state);
 
     rsx! {
         div {
@@ -71,7 +73,7 @@ fn Navigation() -> Element {
             class: "sm:my-0 sm:py-0 sm:mx-10 sm:border-l-3 sm:border-y-0",
             div { class: "duration-100 w-fit mx-auto sm:ml-3 sm:py-3 text-4xl! font-semibold",
                 span { class: "bg-gradient-to-r bg-clip-text from-sky-400/90 to-purple-600/100 text-transparent",
-                    match *text.read() {
+                    match *state.read() {
                         None => rsx! { "GOTO" },
                         Some(text) => rsx! {
                             ">> ",
@@ -84,75 +86,66 @@ fn Navigation() -> Element {
             }
             div {
                 onmouseleave: move |_data| {
-                    text.set(None);
+                    state.set(None);
                 },
                 class: "grid grid-rows-2 grid-flow-col w-fit mx-auto *:m-1",
                 class: "sm:ml-4",
                 class: "*:border-2 *:border-sky-600 *:rounded-sm",
                 class: "*:text-2xl! *:flex *:flex-row *:items-center *:justify-center *:p-1",
-                class: "*:[&div_i]:mx-1 *:[&div_i]:text-3xl!",
+                class: "*:[&div_a_i]:mx-1 *:[&div_a_i]:text-2xl!",
                 class: "*:hover:scale-110 *:hover:opacity-70 *:hover:duration-200 *:odd:hover:-translate-y-2 *:even:hover:translate-y-2",
-                div {
-                    onmouseenter: move |_data| {
-                        text.set(Some("/home"));
-                        notify_send(Some("那是段很让人怀念的时光呢"), None);
-                    },
-                    onmouseleave: move |_data| {
-                        notify_send(None, Some(0));
-                    },
+                NavigationItem {
+                    tip_route: "/moments",
+                    tip_text: "那是段很让人怀念的时光呢",
                     Link { to: Route::Moments {}, i { class: "iconfont icon-chat text-sky-500" } "动态" }
                 }
-                div {
-                    onmouseenter: move |_data| {
-                        text.set(Some("/programming"));
-                        notify_send(Some("别指望我能帮你什么...\n自己解决!"), None);
-                    },
-                    onmouseleave: move |_data| {
-                        notify_send(None, Some(0));
-                    },
+                NavigationItem {
+                    tip_route: "/programming",
+                    tip_text: "别指望我能帮你什么...\n自己解决!",
                     Link { to: Route::Programming {}, i { class: "iconfont icon-code text-sky-500" } "编程" }
                 }
-                div {
-                    onmouseenter: move |_data| {
-                        text.set(Some("/about"));
-                        notify_send(Some("哦? 原来你————"), None);
-                    },
-                    onmouseleave: move |_data| {
-                        notify_send(None, Some(0));
-                    },
+                NavigationItem {
+                    tip_route: "/programming",
+                    tip_text: "哦? 原来你————",
                     Link { to: Route::About {}, i { class: "iconfont icon-about text-sky-500" } "关于" }
                 }
-                div {
-                    onmouseenter: move |_data| {
-                        text.set(Some("/fantasy"));
-                        notify_send(Some("有点意思, 嗯, 不错"), None);
-                    },
-                    onmouseleave: move |_data| {
-                        notify_send(None, Some(0));
-                    },
+                NavigationItem {
+                    tip_route: "/fantasy",
+                    tip_text: "有点意思, 嗯, 不错",
                     Link { to: Route::Fantasy {}, i { class: "iconfont icon-flower text-sky-500" } "幻想" }
                 }
-                div {
-                    onmouseenter: move |_data| {
-                        text.set(Some("/friends"));
-                        notify_send(Some("喂, 这次我来请你喝酒\n就当是上一次的回礼吧"), None);
-                    },
-                    onmouseleave: move |_data| {
-                        notify_send(None, Some(0));
-                    },
+                NavigationItem {
+                    tip_route: "/friends",
+                    tip_text: "喂, 这次我来请你喝酒\n就当是上一次的回礼吧",
                     Link { to: Route::Friends {}, i { class: "iconfont icon-love text-red-400" } "友链" }
                 }
-                div {
-                    onmouseenter: move |_data| {
-                        text.set(Some("/error"));
-                        notify_send(Some("一股非常不妙的气息..."), None);
-                    },
-                    onmouseleave: move |_data| {
-                        notify_send(None, Some(0));
-                    },
+                NavigationItem {
+                    tip_route: "/error",
+                    tip_text: "别指望我能帮你什么...\n自己解决!",
                     Link { to: Route::ErrorPage {}, i { class: "iconfont icon-error text-slate-500" } del { "错误" } }
                 }
             }
+        }
+    }
+}
+
+#[component]
+pub fn NavigationItem(tip_route: &'static str, tip_text: &'static str, children: Element) -> Element {
+    let mut state = use_context::<Signal<Option<&'static str>>>();
+    
+    rsx!{
+        div {
+            onmouseenter: move |_data| {
+                state.set(Some(tip_route));
+                notify_send(Some(tip_text), None);
+            },
+            onmouseleave: move |_data| {
+                notify_send(None, Some(0));
+            },
+            onclick: move |_data| {
+                notify_send(None, Some(2000));
+            },
+            {children}
         }
     }
 }

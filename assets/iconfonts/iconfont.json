@@ -20,6 +20,13 @@
       "unicode_decimal": 59303
     },
     {
+      "icon_id": "43904461",
+      "name": "arrow-down-filling",
+      "font_class": "arrow-down",
+      "unicode": "ed1b",
+      "unicode_decimal": 60699
+    },
+    {
       "icon_id": "4628934",
       "name": "重启",
       "font_class": "restart",
@@ -43,7 +50,7 @@
     {
       "icon_id": "15838582",
       "name": "arrow-down-filling",
-      "font_class": "arrow-down",
+      "font_class": "arrow-right",
       "unicode": "e688",
       "unicode_decimal": 59016
     },
@@ -113,14 +120,14 @@
     {
       "icon_id": "15838566",
       "name": "arrow-right-bold",
-      "font_class": "arrow-right",
+      "font_class": "arrow-right-thin",
       "unicode": "e687",
       "unicode_decimal": 59015
     },
     {
       "icon_id": "15838561",
       "name": "arrow-left-bold",
-      "font_class": "arrow-left",
+      "font_class": "arrow-left-thin",
       "unicode": "e685",
       "unicode_decimal": 59013
     },
