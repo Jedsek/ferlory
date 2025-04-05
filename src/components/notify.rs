@@ -19,7 +19,7 @@ pub fn Notification() -> Element {
     let opacity = if STATE.read().hidden { "opacity-0!" } else { "opacity-100!" };
     rsx! {
         div {
-            class: "invisible! lg:visible! lg:flex {opacity}",
+            class: "invisible! lg:visible! lg:flex lg:flex-row {opacity}",
             class: "border-l-3 bg-slate-800 pointer-events-none fixed! top-6 right-6 w-fit min-w-70 max-h-25 py-1",
             class: "transition-opacity duration-300 ease-in-out",
             div { class: "px-2 flex flex-col justify-content-end",
