@@ -1,4 +1,4 @@
-# Ferlora
+# Ferlory
 
 My personal new generation blog, based on [Dioxus](https://dioxuslabs.com/)  
 (WIP, very initially.)  
