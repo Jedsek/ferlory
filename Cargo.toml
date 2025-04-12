@@ -9,6 +9,8 @@ edition = "2024"
 [dependencies]
 const_format = { version = "0.2.34", features = ["fmt"] }
 dioxus = { git = "https://github.com/DioxusLabs/dioxus", features = ["fullstack", "router"] }
+gloo = "0.11.0"
+phf = { version = "0.11", features = ["macros"] }
 # include_dir = "0.7.4"
 # manganis = "0.6.2"
 # rand = "0.9"
@@ -17,7 +19,6 @@ dioxus = { git = "https://github.com/DioxusLabs/dioxus", features = ["fullstack"
 # dioxus-typst = { path = "../dioxus-typst" }
 # typst = "0.13.0"
 # tokio = "1.44.1"
-gloo = "0.11.0"
 
 [features]
 default = ["web"]

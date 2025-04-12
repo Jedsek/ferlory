@@ -19,6 +19,18 @@ blockquote {
 	@apply border-l-4 border-solid border-[#ddd];
 	@apply font-medium text-[#bbb] opacity-70;
 	@apply mt-4 mb-10 mx-2 px-2;
+	@apply whitespace-pre-line!;
+}
+
+h1 {
+	@apply text-3xl my-8;
+}
+
+h2 {
+	font-size: 24px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	opacity:  0.8;
 }
 
 ul {

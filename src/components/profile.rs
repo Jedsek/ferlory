@@ -83,9 +83,7 @@ fn Navigation() -> Element {
                 }
             }
             div {
-                onmouseleave: move |_data| {
-                    state.set(None);
-                },
+                onmouseleave: move |_data| state.set(None),
                 class: "grid grid-rows-2 grid-flow-col w-fit mx-auto *:m-1",
                 class: "sm:ml-4",
                 class: "*:border-2 *:border-sky-600 *:rounded-sm **:no-underline! **:not-italic! **:font-normal!",
@@ -93,34 +91,34 @@ fn Navigation() -> Element {
                 class: "**:[a_i]:mx-1 **:[a_i]:text-2xl!",
                 class: "*:hover:scale-110 *:hover:opacity-70 *:hover:duration-200 *:odd:hover:-translate-y-2 *:even:hover:translate-y-2",
                 NavigationItem {
-                    tip_route: "/moments",
+                    route: Route::Moments {},
                     tip_text: "那是段很让人怀念的时光呢",
-                    Link { to: Route::Moments {}, i { class: "iconfont icon-chat text-sky-500" } "动态" }
+                    i { class: "iconfont icon-chat text-sky-500" }
                 }
                 NavigationItem {
-                    tip_route: "/programming",
+                    route: Route::Programming {},
                     tip_text: "别指望我能帮你什么...\n自己解决!",
-                    Link { to: Route::Programming {}, i { class: "iconfont icon-code text-sky-500" } "编程" }
+                    i { class: "iconfont icon-code text-sky-500" }
                 }
                 NavigationItem {
-                    tip_route: "/about",
+                    route: Route::About {},
                     tip_text: "哦? 原来你————",
-                    Link { to: Route::About {}, i { class: "iconfont icon-about text-sky-500" } "关于" }
+                    i { class: "iconfont icon-about text-sky-500" }
                 }
                 NavigationItem {
-                    tip_route: "/fantasy",
+                    route: Route::Fantasy {},
                     tip_text: "有点意思, 嗯, 不错",
-                    Link { to: Route::Fantasy {}, i { class: "iconfont icon-flower text-sky-500" } "幻想" }
+                    i { class: "iconfont icon-flower text-sky-500" }
                 }
                 NavigationItem {
-                    tip_route: "/friends",
+                    route: Route::Friends {},
                     tip_text: "喂, 这次我来请你喝酒\n就当是上一次的回礼吧",
-                    Link { to: Route::Friends {}, i { class: "iconfont icon-love text-red-400" } "友链" }
+                    i { class: "iconfont icon-love text-red-400" }
                 }
                 NavigationItem {
-                    tip_route: "/error",
+                    route: Route::ErrorPage {},
                     tip_text: "? 好███怪的感觉, ██████\n等等...快███回来, ███险!!!",
-                    Link { to: Route::ErrorPage {}, i { class: "iconfont icon-error text-slate-500" } del { "错误" } }
+                    i { class: "iconfont icon-error text-slate-500" }
                 }
             }
         }
@@ -128,22 +126,25 @@ fn Navigation() -> Element {
 }
 
 #[component]
-pub fn NavigationItem(tip_route: &'static str, tip_text: &'static str, children: Element) -> Element {
+pub fn NavigationItem(route: Route, tip_text: &'static str, children: Element) -> Element {
     let mut state = use_context::<Signal<Option<&'static str>>>();
     
     rsx!{
         div {
             onmouseenter: move |_data| {
-                state.set(Some(tip_route));
+                state.set(Some(route.route_name()));
                 notify_send(Some(tip_text), None);
             },
-            onmouseleave: move |_data| {
-                notify_send(None, Some(0));
-            },
-            onclick: move |_data| {
-                notify_send(None, Some(1500));
-            },
-            {children}
+            onmouseleave: move |_data| notify_send(None, Some(0)),
+            onclick: move |_data| notify_send(None, Some(1500)),
+            Link { to: route,
+                {children}
+                if route.english_name() == "error" {
+                    del { "{route.chinese_name()}" }
+                } else {
+                    "{route.chinese_name()}"
+                }
+            }
         }
     }
 }
