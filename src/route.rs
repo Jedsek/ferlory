@@ -1,4 +1,4 @@
-use crate::components::{About, ErrorPage, Fantasy, Friends, Home, Other, Moments, Programming, Sidebar};
+use crate::components::{About, ErrorPage, Fantasy, Friends, Home, Other, Moments, Programming, NavBar};
 use dioxus::prelude::*;
 
 #[derive(Debug, Clone, Routable, PartialEq)]
@@ -6,7 +6,7 @@ use dioxus::prelude::*;
 pub enum Route {
     #[route("/")]
     Home {},
-    #[layout(Sidebar)]
+    #[layout(NavBar)]
         #[route("/moments")]
         Moments {},
         #[route("/programming")]

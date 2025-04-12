@@ -13,11 +13,14 @@ pub fn Home() -> Element {
     rsx! {
         Profile {}
 
-        div { class: "min-h-screen",
-            div { "=> 随意探索吧!! " "可能会有" span { class: "font-bold", " 惊喜 " } "哦~" }
-            div { "=> 这个博客本身就是一个 rust 项目: "
-                a { href: "https://github.com/jedsek/ferlory", "https://github.com/jedsek/ferlory" } }
-
+        div {
+            div { class: "mb-6",
+                div { "=> 随意探索吧!! " "可能会有" span { class: "font-bold", " 惊喜 " } "哦~" }
+                div { class: "flex flex-col sm:flex-row sm:*:mx-2",
+                    "=> 这个博客本身就是一个 rust 项目: "
+                    a { href: "https://github.com/jedsek/ferlory", "https://github.com/jedsek/ferlory" }
+                }
+            }
 
             Details {
                 summary: "我是谁?",
@@ -45,38 +48,66 @@ pub fn Home() -> Element {
                 li { "本站还在飞速优化优化inging!!! 等我看完小说打会音游吃掉手里的串串就打开电脑敲代...等等, 新番更新日?! 受不鸟了" }
                 li { "又是被 rust 生命周期暴打, 被编译器爸爸摁在地上锤的一天" }
             }
-        }
 
-        // div { class: "text-lg", oncopy: move |_data| notify_send(Some("呐, 文本已经复制好了"), Some(1000)),
-        //     p { "大家好" }
-        //     div { dangerous_inner_html: include_str!("../../assets/content/home.html") }
-        // }
+            div { class: "min-h-[50vh]",
+                div { class: "text-xl mt-8 mb-4", "博客构建的 TODO 列表:" }
+                Todo { completed: true, "在较大屏幕上显示右上角的弹幕" }
+                Todo { completed: true, "从 tailwind-v3 迁移至 tailwind-v4" }
+                Todo { completed: true, "适配移动端适配, 优化手机上的体验" }
+                Todo { completed: false, "静态的代码高亮, 去除 highlight.js" }
+                Todo { completed: false, "类似 " a { href: "https://shaunlebron.github.io/parinfer/", "parinfer" } " 的方案与 lisp/scheme 代码进行交互" }
+                Todo { completed: false, "清除史山与重构代码 " del { "(遥遥无期是也)" } }
+                
+            }
+        }
     }
 }
 
 
 #[component]
-pub fn Details(summary:&'static str, children: Element) -> Element {
+pub fn Details(summary: &'static str, children: Element) -> Element {
     let mut hidden = use_signal(|| true);
+    let is_hidden = *hidden.read();
     
     rsx!{
         div {
-            class: "mx-1 my-5",
+            class: "my-3",
             class: "transition-all duration-500 ease-in-out",
             div {
-                class: "text-xl w-fit m-2",
-                onmouseenter: move |_data| *hidden.write() = false,
+                class: "text-xl w-fit my-2",
                 onclick: move |_data| *hidden.write() ^= true,
-                i { class: "iconfont icon-arrow-down  text-xl!", class: if *hidden.read() { "hidden" } else { "inline" } }
-                i { class: "iconfont icon-arrow-right text-xl!", class: if *hidden.read() { "inline" } else { "hidden" }}
+                i { class: "iconfont icon-arrow-down  text-xl!", class: if is_hidden { "hidden" } else { "inline" } }
+                i { class: "iconfont icon-arrow-right text-xl!", class: if is_hidden { "inline" } else { "hidden" }}
                 {summary}
             }
             ul {
-                class: if *hidden.read() { "opacity-0 hidden" } else { "opacity-100 block" },
+                class: if is_hidden { "opacity-0 hidden" } else { "opacity-100 block" },
                 class: "transition-all duration-500 ease-in-out",
                 {children}
             }
 
+        }
+    }
+}
+
+#[component]
+pub fn Todo(completed: Option<bool>, children: Element) -> Element {
+    let completed = completed.unwrap_or_default();
+
+    rsx! {
+        div {
+            class: "my-1 flex flex-row",
+            input {
+                type: "checkbox",
+                checked: completed,
+                class: "w-5! h-5! text-4xl! mx-3 align-middle shrink-0",
+                class: "appearance-none outline-1 outline-solid outline-sky-300",
+                class: if completed { "after:inline-block after:content-['L'] after:text-cyan-200" },
+                class: if completed { "after:-translate-x-[0.4px] after:-translate-y-[11px] after:rotate-40 after:-scale-x-65 after:scale-y-70" },
+            }
+            div {
+                {children}
+            }
         }
     }
 }

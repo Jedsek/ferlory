@@ -8,7 +8,7 @@ body {
 }
 
 a {
-	@apply underline;
+	@apply underline font-semibold;
 }
 
 p {
@@ -16,17 +16,13 @@ p {
 }
 
 blockquote {
-	border-left: 4px solid #ddd;
-	color: #bbb;
-	margin-top: 10px;
-	margin-bottom: 10px;
-	padding: 0 15px;
-	font-weight: 450;
-	opacity: 0.66;
+	@apply border-l-4 border-solid border-[#ddd];
+	@apply font-medium text-[#bbb] opacity-70;
+	@apply mt-4 mb-10 mx-2 px-2;
 }
 
 ul {
-	@apply list-disc ml-10 mr-6;
+	@apply list-disc mx-6;
 }
 
 ol {

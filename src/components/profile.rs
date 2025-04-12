@@ -51,12 +51,10 @@ fn Info() -> Element {
             }
             div {
                 class: "sm:mx-0 sm:pt-3 sm:h-fit *:text-lg! *:italic *:text-slate-400",
-                class: "*:[&div_span]:last:hover:underline",
-                class: "*:[&div_span]:last:hover:underline",
-                div { span { "--> " } span { "与其浊富, 宁比清贫" } }
-                div { span { "==> " } span { "cosplay堂吉珂德" } }
-                div { span { "=== " } span { "加缪式钢铁活法" } }
-                div { span { ">>> " } span { "galgame!!!" } }
+                div { span { "--> " } a { class: "no-underline! hover:underline! hover:font-semibold! font-normal!", href: "/about/#清贫", "与其浊富, 宁比清贫" } }
+                div { span { "==> " } a { class: "no-underline! hover:underline! hover:font-semibold! font-normal!", href: "/about/#堂吉柯德", "cosplay堂吉珂德" } }
+                div { span { "=== " } a { class: "no-underline! hover:underline! hover:font-semibold! font-normal!", href: "/about/#加缪式钢铁活法", "加缪式钢铁活法" } }
+                div { span { ">>> " } a { class: "no-underline! hover:underline! hover:font-semibold! font-normal!", href: "/about/#galgame", "galgame!!!" } }
             }
         }
     }
@@ -90,9 +88,9 @@ fn Navigation() -> Element {
                 },
                 class: "grid grid-rows-2 grid-flow-col w-fit mx-auto *:m-1",
                 class: "sm:ml-4",
-                class: "*:border-2 *:border-sky-600 *:rounded-sm **:no-underline!",
+                class: "*:border-2 *:border-sky-600 *:rounded-sm **:no-underline! **:not-italic! **:font-normal!",
                 class: "*:text-2xl! *:flex *:flex-row *:items-center *:justify-center *:p-1",
-                class: "*:[&div_a_i]:mx-1 *:[&div_a_i]:text-2xl!",
+                class: "**:[a_i]:mx-1 **:[a_i]:text-2xl!",
                 class: "*:hover:scale-110 *:hover:opacity-70 *:hover:duration-200 *:odd:hover:-translate-y-2 *:even:hover:translate-y-2",
                 NavigationItem {
                     tip_route: "/moments",
@@ -105,7 +103,7 @@ fn Navigation() -> Element {
                     Link { to: Route::Programming {}, i { class: "iconfont icon-code text-sky-500" } "编程" }
                 }
                 NavigationItem {
-                    tip_route: "/programming",
+                    tip_route: "/about",
                     tip_text: "哦? 原来你————",
                     Link { to: Route::About {}, i { class: "iconfont icon-about text-sky-500" } "关于" }
                 }
@@ -121,7 +119,7 @@ fn Navigation() -> Element {
                 }
                 NavigationItem {
                     tip_route: "/error",
-                    tip_text: "别指望我能帮你什么...\n自己解决!",
+                    tip_text: "? 好███怪的感觉, ██████\n等等...快███回来, ███险!!!",
                     Link { to: Route::ErrorPage {}, i { class: "iconfont icon-error text-slate-500" } del { "错误" } }
                 }
             }

@@ -9,8 +9,8 @@ pub use placeholder::Placeholder;
 mod profile;
 pub use profile::Profile;
 
-mod sidebar;
-pub use sidebar::Sidebar;
+mod navbar;
+pub use navbar::NavBar;
 
 mod home;
 pub use home::Home;

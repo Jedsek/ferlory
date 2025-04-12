@@ -61,14 +61,16 @@ pub fn launch_app(app: fn() -> Element) {
 pub fn notify_send(content: Option<&'static str>, timeout_ms: Option<u32>) {
     STATE.write().hidden = false;
     if let Some(content) = content {
-        STATE.write().content = content.into();
+        STATE.write().content = content;
     }
     match timeout_ms {
         None => STATE.write().timeout_handle = None,
         Some(timeout_ms) =>  {
-            STATE.write().timeout_handle = Some(Timeout::new(timeout_ms, || {
-            STATE.write().hidden = true;
-        }))},
+            let handle = Timeout::new(timeout_ms, || {
+                STATE.write().hidden = true;
+            });
+            STATE.write().timeout_handle = Some(handle)
+        },
     }
 
 }
