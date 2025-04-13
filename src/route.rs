@@ -1,11 +1,10 @@
-use crate::components::{About, ErrorPage, Fantasy, Friends, Home, Other, Moments, Programming, NavBar};
+use crate::components::routes::*;
+use crate::components::NavBar;
 use dioxus::prelude::*;
 
-#[derive(Debug, Copy, Clone, Routable, PartialEq)]
+#[derive(Debug, Clone, Routable, PartialEq)]
 #[rustfmt::skip]
 pub enum Route {
-    #[route("/")]
-    Home {},
     #[layout(NavBar)]
         #[route("/moments")]
         Moments {},
@@ -20,6 +19,9 @@ pub enum Route {
         #[route("/404")]
         ErrorPage {},
     #[end_layout]
+
+    #[route("/")]
+    Home {},
 
     // PageNotFound is a catch all route that will match any route and placing the matched segments in the route field
     #[route("/other")]
@@ -36,7 +38,7 @@ impl Route {
             Self::Friends {} => "友链",
             Self::About {} => "关于",
             Self::ErrorPage {} => "错误",
-            Self::Other {} => "其他",
+            _ => "其他",
         }
     }
 
@@ -49,7 +51,7 @@ impl Route {
             Self::Friends {} => "friends",
             Self::About {} => "about",
             Self::ErrorPage {} => "error",
-            Self::Other {} => "other",
+            _ => "other",
         }
     }
 
@@ -62,7 +64,7 @@ impl Route {
             Self::Friends {} => "/friends",
             Self::About {} => "/about",
             Self::ErrorPage {} => "/error",
-            Self::Other {} => "/other",
+            _ => "/other",
         }
     }
 }

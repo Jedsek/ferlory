@@ -12,7 +12,7 @@ fn main() {
         rsx! {
             document::Title { "柳下川 && Ferlory" }
             document::Link { rel: "shortcut icon", href: asset!("/assets/images/avatar.avif"), type: "image/x-icon" }
-            document::Stylesheet { href: "/assets/styles/tailwind.css" }
+            document::Stylesheet { href: asset!("/assets/styles/tailwind.css") }
             document::Stylesheet { href: asset!("/assets/iconfonts/iconfont.css") }
             document::Stylesheet { href: asset!("/assets/styles/typst.css") }
             document::Stylesheet { href: "https://chinese-fonts-cdn.deno.dev/packages/maple-mono-cn/dist/MapleMono-CN-Regular/result.css" }

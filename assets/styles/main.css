@@ -23,7 +23,7 @@ blockquote {
 }
 
 h1 {
-	@apply text-3xl my-8;
+	@apply *:no-underline text-3xl my-8;
 }
 
 h2 {

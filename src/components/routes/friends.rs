@@ -19,7 +19,7 @@ pub fn Friends() -> Element {
 
 
 #[component]
-pub fn Friend(name: &'static str, avatar: &'static str, href: &'static str) -> Element {
+fn Friend(name: &'static str, avatar: &'static str, href: &'static str) -> Element {
     rsx! {
         div {
             class: "flex flex-row border-l-4 border-sky-500 items-center",
