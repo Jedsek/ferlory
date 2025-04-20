@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+#[allow(dead_code)]
+pub static CONTENTS: phf::Map<&'static str, &'static str> = phf::phf_map! {
+    "home.typ" => r######"<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
@@ -178,3 +180,16 @@
     <p>你好 ->   ></p>
   </body>
 </html>
+"######,
+    "aaa.typ" => r######"<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <p>asdasdasd => asd</p>
+  </body>
+</html>
+"######,
+};

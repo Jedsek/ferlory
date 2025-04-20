@@ -1,3 +1,5 @@
+#![allow(unreachable_patterns)]
+
 use crate::components::routes::*;
 use crate::components::NavBar;
 use dioxus::prelude::*;
@@ -6,26 +8,24 @@ use dioxus::prelude::*;
 #[rustfmt::skip]
 pub enum Route {
     #[layout(NavBar)]
-        #[route("/moments")]
+        #[route("/")]
+        Home {},
+        #[route("/moments/")]
         Moments {},
-        #[route("/programming")]
+        #[route("/programming/")]
         Programming {},
-        #[route("/fantasy")]
+        #[route("/fantasy/")]
         Fantasy {},
-        #[route("/friends")]
+        #[route("/friends/")]
         Friends {},
-        #[route("/about")]
+        #[route("/about/")]
         About {},
-        #[route("/404")]
-        ErrorPage {},
     #[end_layout]
 
-    #[route("/")]
-    Home {},
-
     // PageNotFound is a catch all route that will match any route and placing the matched segments in the route field
-    #[route("/other")]
-    Other {}
+    #[route("/404/")]
+    #[redirect("/:.._segments", |_segments: Vec<String>| Route::ErrorPage {})]
+    ErrorPage {},
 }
 
 impl Route {
@@ -38,7 +38,7 @@ impl Route {
             Self::Friends {} => "友链",
             Self::About {} => "关于",
             Self::ErrorPage {} => "错误",
-            _ => "其他",
+            _ => unreachable!()
         }
     }
 
@@ -51,7 +51,7 @@ impl Route {
             Self::Friends {} => "friends",
             Self::About {} => "about",
             Self::ErrorPage {} => "error",
-            _ => "other",
+            _ => unreachable!()
         }
     }
 
@@ -64,7 +64,7 @@ impl Route {
             Self::Friends {} => "/friends",
             Self::About {} => "/about",
             Self::ErrorPage {} => "/error",
-            _ => "/other",
+            _ => unreachable!()
         }
     }
 }

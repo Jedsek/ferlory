@@ -19,5 +19,5 @@ pub use about::About;
 mod error_page;
 pub use error_page::ErrorPage;
 
-mod page_not_found;
-pub use page_not_found::Other;
+// mod other;
+// pub use other::Other;

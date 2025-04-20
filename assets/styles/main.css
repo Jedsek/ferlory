@@ -1,6 +1,12 @@
 * {
 	font-family: "Maple Mono NF CN";
+	@apply antialiased;
+	font-smooth: always;
 	color-scheme: dark;
+}
+
+html {
+	@apply scroll-smooth;
 }
 
 body {
@@ -18,12 +24,13 @@ p {
 blockquote {
 	@apply border-l-4 border-solid border-[#ddd];
 	@apply font-medium text-[#bbb] opacity-70;
-	@apply mt-4 mb-10 mx-2 px-2;
+	@apply mt-4 mb-6 mx-2 px-2;
 	@apply whitespace-pre-line!;
 }
 
 h1 {
-	@apply *:no-underline text-3xl my-8;
+	@apply *:no-underline text-2xl sm:text-3xl my-4 sm:my-8;
+	@apply whitespace-pre-line!;
 }
 
 h2 {

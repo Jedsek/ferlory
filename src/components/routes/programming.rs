@@ -1,14 +1,11 @@
 use dioxus::prelude::*;
+use crate::components::post_components::*;
 
 #[component]
 pub fn Programming() -> Element {
     rsx! {
-        div {
-            id: "blog",
-
-            // Content
-            p { "In blog, we show how the Dioxus router works and how URL parameters can be passed as props to our route components." }
-
-        }
+        blockquote { "本页面记载一些计算机方面的技术文章" }
+        PostCard { serioes: "rust-tui", "rust-tui" }
+        TypstPost { path: "home.typ" }
     }
 }

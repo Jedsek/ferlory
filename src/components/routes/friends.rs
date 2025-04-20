@@ -8,7 +8,7 @@ pub fn Friends() -> Element {
 
             div { class: "mx-1",
                 Friend {
-                    name: "Amiriox",
+                    name: "折鸦夜明け前(Amiriox)",
                     avatar: "https://amiriox.github.io/images/icon.jpg",
                     href: "https://amiriox.github.io/"
                 }
@@ -26,7 +26,7 @@ fn Friend(name: &'static str, avatar: &'static str, href: &'static str) -> Eleme
             img { class: "w-14 mx-2 my-2", src: avatar }
             div {
                 class: "flex flex-col",
-                span { class: "text-2xl! italic font-medium", "{name}" }
+                span { class: "text-lg! italic font-medium", "{name}" }
                 a { href, "{href}" }
             }
         }

@@ -1,8 +1,10 @@
+use const_format::unwrap;
 use dioxus::prelude::*;
 
 #[component]
-pub fn Details(summary: &'static str, children: Element) -> Element {
-    let mut hidden = use_signal(|| true);
+pub fn Details(summary: Element, hidden: Option<bool>, children: Element) -> Element {
+    let hidden = hidden.unwrap_or(true);
+    let mut hidden = use_signal(|| hidden);
     let is_hidden = *hidden.read();
     
     rsx!{

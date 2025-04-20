@@ -1,131 +1,76 @@
 use dioxus::prelude::*;
+use crate::components::post_components::*;
 
-#[allow(dead_code)]
 #[derive(Copy, Clone)]
 struct Card {
     index: u8,
-    chinese_name: &'static str,
-    english_name: &'static str,
+    chinese: &'static str,
+    english: &'static str,
+    intro: &'static str,
 }
 
 impl Card {
+    #[rustfmt::skip]
     const fn new(index: u8) -> Self {
         match index {
-             0_u8 => Card { index:  0, chinese_name: "愚者",     english_name: "fool" },
-             1_u8 => Card { index:  1, chinese_name: "魔术师",   english_name: "magician" },
-             2_u8 => Card { index:  2, chinese_name: "女祭司",   english_name: "high_priestess" },
-             3_u8 => Card { index:  3, chinese_name: "皇后",     english_name: "empress" },
-             4_u8 => Card { index:  4, chinese_name: "皇帝",     english_name: "emperor" },
-             5_u8 => Card { index:  5, chinese_name: "教皇",     english_name: "hierophant" },
-             6_u8 => Card { index:  6, chinese_name: "恋人",     english_name: "lovers" },
-             7_u8 => Card { index:  7, chinese_name: "战车",     english_name: "chariot" },
-             8_u8 => Card { index:  8, chinese_name: "力量",     english_name: "strength" },
-             9_u8 => Card { index:  9, chinese_name: "隐者",     english_name: "hermit" },
-            10_u8 => Card { index: 10, chinese_name: "命运之轮", english_name: "wheel_of_fortune" },
-            11_u8 => Card { index: 11, chinese_name: "正义",     english_name: "justice" },
-            12_u8 => Card { index: 12, chinese_name: "倒吊人",   english_name: "hanged_man" },
-            13_u8 => Card { index: 13, chinese_name: "死神",     english_name: "death" },
-            14_u8 => Card { index: 14, chinese_name: "节制",     english_name: "temperance" },
-            15_u8 => Card { index: 15, chinese_name: "恶魔",     english_name: "devil" },
-            16_u8 => Card { index: 16, chinese_name: "高塔",     english_name: "tower" },
-            17_u8 => Card { index: 17, chinese_name: "星星",     english_name: "star" },
-            18_u8 => Card { index: 18, chinese_name: "月亮",     english_name: "moon" },
-            19_u8 => Card { index: 19, chinese_name: "太阳",     english_name: "sun" },
-            20_u8 => Card { index: 20, chinese_name: "审判",     english_name: "judgement" },
-            21_u8 => Card { index: 21, chinese_name: "世界",     english_name: "world" },
+             0_u8 => Card { index:  0, chinese: "愚者",     english: "fool",             intro: "愚者是旅程的起点, 象征自由, 冒险与无限可能" },
+             1_u8 => Card { index:  1, chinese: "魔术师",   english: "magician",         intro: "魔术师代表意志与创造, 是 manifest 的起点" },
+             2_u8 => Card { index:  2, chinese: "女祭司",   english: "high_priestess",   intro: "女祭司象征直觉与潜意识, 是内在智慧的守护者"},
+             3_u8 => Card { index:  3, chinese: "皇后",     english: "empress",          intro: "皇后是丰饶与感性的象征, 掌管生命力与关怀"},
+             4_u8 => Card { index:  4, chinese: "皇帝",     english: "emperor",          intro: "皇帝代表秩序/权威/理性, 是稳定与规则的化身" },
+             5_u8 => Card { index:  5, chinese: "教皇",     english: "hierophant",       intro: "教皇象征传统, 信仰与智慧的传承者" },
+             6_u8 => Card { index:  6, chinese: "恋人",     english: "lovers",           intro: "恋人牌关于选择, 关系与爱的融合"},
+             7_u8 => Card { index:  7, chinese: "战车",     english: "chariot",          intro: "战车代表意志的驱动与前进的胜利" },
+             8_u8 => Card { index:  8, chinese: "力量",     english: "strength",         intro: "力量并非暴力, 而是温柔与坚毅的结合"},
+             9_u8 => Card { index:  9, chinese: "隐者",     english: "hermit",           intro: "隐者是追求真理的独行者, 象征内省与启示"},
+            10_u8 => Card { index: 10, chinese: "命运之轮", english: "wheel_of_fortune", intro: "命运之轮提示循环, 机遇与无法掌控的变化" },
+            11_u8 => Card { index: 11, chinese: "正义",     english: "justice",          intro: "正义是因果的法则, 象征公平, 责任与真理" },
+            12_u8 => Card { index: 12, chinese: "倒吊人",   english: "hanged_man",       intro: "倒吊人代表牺牲与换位思考, 追求更高视角" },
+            13_u8 => Card { index: 13, chinese: "死神",     english: "death",            intro: "死神不等于终结, 而是深层变革与重生的开始" },
+            14_u8 => Card { index: 14, chinese: "节制",     english: "temperance",       intro: "节制是调和与平衡, 是不同力量的融合之道" },
+            15_u8 => Card { index: 15, chinese: "恶魔",     english: "devil",            intro: "恶魔是执念, 欲望与自我束缚的象征" },
+            16_u8 => Card { index: 16, chinese: "高塔",     english: "tower",            intro: "高塔意味着突如其来的崩塌, 唤醒与重建的前奏" },
+            17_u8 => Card { index: 17, chinese: "星星",     english: "star",             intro: "星星是希望与疗愈的光芒, 引导你走出黑夜" },
+            18_u8 => Card { index: 18, chinese: "月亮",     english: "moon",             intro: "月亮象征幻觉, 情绪与潜藏的未知" },
+            19_u8 => Card { index: 19, chinese: "太阳",     english: "sun",              intro: "太阳是喜悦, 能量与真理的光照" },
+            20_u8 => Card { index: 20, chinese: "审判",     english: "judgement",        intro: "审判代表觉醒, 复活与心灵的审视" },
+            21_u8 => Card { index: 21, chinese: "世界",     english: "world",            intro: "世界是旅程的圆满, 整合与自由的终章" },
             _ => unreachable!()
         }
 
     }
 
-    const fn intro(&self) -> &'static str {
-        match self.index {
-             0 => "愚者是旅程的起点, 象征自由, 冒险与无限可能",
-             1 => "魔术师代表意志与创造, 是 manifest 的起点",
-             2 => "女祭司象征直觉与潜意识, 是内在智慧的守护者",
-             3 => "皇后是丰饶与感性的象征, 掌管生命力与关怀",
-             4 => "皇帝代表秩序/权威/理性, 是稳定与规则的化身",
-             5 => "教皇象征传统, 信仰与智慧的传承者",
-             6 => "恋人牌关于选择, 关系与爱的融合",
-             7 => "战车代表意志的驱动与前进的胜利",
-             8 => "力量并非暴力, 而是温柔与坚毅的结合",
-             9 => "隐者是追求真理的独行者, 象征内省与启示",
-            10 => "命运之轮提示循环, 机遇与无法掌控的变化",
-            11 => "正义是因果的法则, 象征公平, 责任与真理",
-            12 => "倒吊人代表牺牲与换位思考, 追求更高视角",
-            13 => "死神不等于终结, 而是深层变革与重生的开始",
-            14 => "节制是调和与平衡, 是不同力量的融合之道",
-            15 => "恶魔是执念, 欲望与自我束缚的象征",
-            16 => "高塔意味着突如其来的崩塌, 唤醒与重建的前奏",
-            17 => "星星是希望与疗愈的光芒, 引导你走出黑夜",
-            18 => "月亮象征幻觉, 情绪与潜藏的未知",
-            19 => "太阳是喜悦, 能量与真理的光照",
-            20 => "审判代表觉醒, 复活与心灵的审视",
-            21 => "世界是旅程的圆满, 整合与自由的终章",
-            _  => "未知之牌, 可能穿越了维度之外",
-        }
+    const fn next(&self, nth: u8) -> Self {
+        Card::new((self.index + 22 + nth) % 22)
     }
 
-    const fn next(&self) -> Self {
-        Card::new((self.index + 22 + 1) % 22)
-    }
-
-    const fn next_n(&self, n: u8) -> Self {
-        Card::new((self.index + 22 + n) % 22)
-    }
-
-    const fn prev(&self) -> Self {
-        Card::new((self.index + 22 -1) % 22)
+    const fn prev(&self, nth: u8) -> Self {
+        Card::new((self.index + 22 - nth) % 22)
     }
 }
-
-// #[rustfmt::skip]
-// static CARDS: phf::Map<u8, Card> = phf::phf_map! {
-//      0_u8 => Card::new( 0, "愚者",     "fool"),
-//      1_u8 => Card::new( 1, "魔术师",   "magician"),
-//      2_u8 => Card::new( 2, "女祭司",   "high_priestess"),
-//      3_u8 => Card::new( 3, "皇后",     "empress"),
-//      4_u8 => Card::new( 4, "皇帝",     "emperor"),
-//      5_u8 => Card::new( 5, "教皇",     "hierophant"),
-//      6_u8 => Card::new( 6, "恋人",     "lovers"),
-//      7_u8 => Card::new( 7, "战车",     "chariot"),
-//      8_u8 => Card::new( 8, "力量",     "strength"),
-//      9_u8 => Card::new( 9, "隐者",     "hermit"),
-//     10_u8 => Card::new(10, "命运之轮", "wheel_of_fortune"),
-//     11_u8 => Card::new(11, "正义",     "justice"),
-//     12_u8 => Card::new(12, "倒吊人",   "hanged_man"),
-//     13_u8 => Card::new(13, "死神",     "death"),
-//     14_u8 => Card::new(14, "节制",     "temperance"),
-//     15_u8 => Card::new(15, "恶魔",     "devil"),
-//     16_u8 => Card::new(16, "高塔",     "tower"),
-//     17_u8 => Card::new(17, "星星",     "star"),
-//     18_u8 => Card::new(18, "月亮",     "moon"),
-//     19_u8 => Card::new(19, "太阳",     "sun"),
-//     20_u8 => Card::new(20, "审判",     "judgement"),
-//     21_u8 => Card::new(21, "世界",     "world")
-// };
 
 #[component]
 pub fn About() -> Element {
     rsx! {
-        div { class: "h-2000",
-            blockquote { "命运的涟漪被不断激起\n编织者低语道出「阿尔卡纳」之名\n至此, 一个个故事已然掀开了序幕" }
+        H1 { text: "塔罗牌" }
+        blockquote { "命运的涟漪被不断激起\n编织者低语道出「阿尔卡纳」之名\n至此, 一个个故事已然掀开了序幕" }
+        Arcana { }
 
-            RandomMajorArcana { }
-            
-            // MajorArcana {
-            //     title: "清贫",
-            //     cards: &["justice"],
-            //     span { "与其浊富, 宁比清贫" }
-            //     span { "语出唐代姚崇《冰壶诫》: 与其不义致富, 不如保持美德恪守信条" }
-            //     span { "浊富谓不义致富, 清贫谓穷而恪守底线" }
-            // }
-        }
+        H1 { id: "清贫", text: "以『清贫』之名" }
+        Qing {}
+        
+        H1 { id: "钢铁意志", text: "加缪式的钢铁意志\n& Cosplay堂吉柯德" }
+        IronWill {}
+
+        H1 { id: "galgame", text: "论美少女恋爱游戏" }
+        Galgame {}
+
+        div { class: "h-[50vh]" }
     }
 }
 
 #[component]
-fn RandomMajorArcana() -> Element {
+fn Arcana() -> Element {
     let random_index = rand::random_range(0_u8..=21_u8);
     let mut card_signal = use_signal(move ||  Card::new(random_index));
     let card = *card_signal.read();
@@ -133,65 +78,127 @@ fn RandomMajorArcana() -> Element {
    
     rsx! {
         div {
-            class: "border-3 border-slate-400 flex flex-col w-fit",
-            class: "sm:flex-row sm:w-auto sm:mx-8",
+            class: "border-2 border-cyan-600 px-2 pt-2 pb-1 flex flex-col w-fit",
+            class: "sm:flex-row sm:w-fit sm:mx-auto",
             img {
-                class: "w-full sm:h-180 sm:w-auto",
-                ontouchend: move |_data| *card_signal.write() = card.next(),
-                src: format!("/assets/images/arcana/bilibili/{}.avif", card.english_name)
+                class: "w-full sm:h-150 sm:w-auto",
+                ontouchend: move |_data| *card_signal.write() = card.next(1),
+                src: format!("/assets/images/arcana/bilibili/{}.avif", card.english)
             }
-            div { class: "flex flex-col",
+            div { class: "flex flex-col w-full",
                 div { class: "text-4xl mx-auto",
                     button {
-                        class: "inline-block text-4xl! text-sky-300",
+                        class: "inline-block text-4xl! text-purple-400",
                         class: "transition duration-200 ease-in-out hover:scale-130",
-                        onclick: move |_data| *card_signal.write() = card.prev(),
+                        onclick: move |_data| *card_signal.write() = card.prev(1),
                         "<-"
                     }
-                    {card.chinese_name}
+                    "{card.chinese}"
                     button {
-                        class: "inline-block text-4xl! text-sky-300",
+                        class: "inline-block text-4xl! text-purple-400",
                         class: "transition duration-200 ease-in-out hover:scale-130",
-                        onclick: move |_data| *card_signal.write() = card.next(),
+                        onclick: move |_data| *card_signal.write() = card.next(1),
                         "->"
                     }
-                    div {
-                        class: "w-fit mx-auto text-sm",
-                        class: "sm:text-xl",
-                        {card.intro()}
-                    }
+                }
+                div {
+                    class: "w-fit mx-auto text-sm italic",
+                    class: "sm:text-2xl",
+                    {card.intro}
                 }
                 div {
                     class: "hidden",
                     class: "sm:flex sm:flex-row mt-auto *:mt-auto",
-                    img {
-                        class: "h-130",
-                        src: format!("/assets/images/arcana/bilibili/{}.avif", card.next_n(1).english_name)
+                    img { class: "h-120",
+                        src: format!("/assets/images/arcana/bilibili/{}.avif", card.next(1).english)
                     }
-                    img {
-                        class: "h-90",
-                        src: format!("/assets/images/arcana/bilibili/{}.avif", card.next_n(2).english_name)
+                    img { class: "h-90 max-[50rem]:hidden",
+                        src: format!("/assets/images/arcana/bilibili/{}.avif", card.next(2).english)
                     }
-                    img {
-                        class: "h-60",
-                        src: format!("/assets/images/arcana/bilibili/{}.avif", card.next_n(3).english_name)
+                    img { class: "h-65 max-[55rem]:hidden",
+                        src: format!("/assets/images/arcana/bilibili/{}.avif", card.next(3).english)
                     }
-                    img {
-                        class: "h-30",
-                        src: format!("/assets/images/arcana/bilibili/{}.avif", card.next_n(4).english_name)
+                    img { class: "h-40 max-[60rem]:hidden",
+                        src: format!("/assets/images/arcana/bilibili/{}.avif", card.next(4).english)
+                    }
+                    img { class: "h-25 max-[65rem]:hidden",
+                        src: format!("/assets/images/arcana/bilibili/{}.avif", card.next(5).english)
                     }
                 }
             }
-            // for (_index, card) in CARDS {
-            //     div { class: "h-120 w-fit flex flex-row m-4", 
-            //         img {class: "h-120",  src: format!("/assets/images/arcana/bilibili/{}.avif", card.english_name)}
-            //         div { class: "flex flex-col",
-            //             "{card.chinese_name}"
-            //             "{card.intro()}"
-            //         }
-            //     }
-            // }
+        }
+    }
+}
 
+
+#[component]
+fn Qing() -> Element {
+    rsx! {
+        div {
+            blockquote { "宁可清贫自乐, 不作浊富多忧" }
+            "我的网名之一是『清贫』, 还记得当时看的一本叫作《剑娘》的小说里面, 清贫剑真的超级可爱!" br {}
+            "与此同时, 这也来自一句诗: \"与其浊富, 宁比清贫\"" br {}
+            br {}
+            "我厌恶世间许许多多的不正不义" br {}
+            br {}
+            "倘若污浊沾染我身, 那我想必会很难过很屈辱, 然后奋起反抗吧" br {}
+            "亮丽且卑劣, 蒙尘且荣耀, 但我永远也做不到纯粹的二选一" br {}
+            "怀着向往荣誉之心, 尽量努力让自己避免卑劣, 仅此而已" br {}
+            br {} 
+            "曾经..." br {}
+            "我和你一样, 也是个冒险者..." br {}
+            "『直到我的膝盖中了一剑』" br {}
+            br {}
+            "以『清贫』之名, 我仍存在于此时此刻"
+        }
+    }
+}
+
+#[component]
+fn IronWill() -> Element {
+    rsx! {
+        div {
+            blockquote { "The struggle itself toward the heights is enough to fill a man’s heart. One must imagine Sisyphus happy.
+                                ————Albert Camus, The Myth of Sisyphus" }
+            blockquote { "于攀登中的挣扎本身就足以充实人的心灵, 我们必须想象西西弗斯是幸福的
+                                ————加缪,《西西弗斯》" }
+            "尽管世界荒诞, 空洞, 虚无, 毫无意义" br {}
+            "但西西弗斯, 他选择了反抗, 选择了继续推石头" br {}
+            "这就是人类对荒诞的回应与自我胜利" br {}
+            br {}
+            "人无法像神一般永不疲倦, 人总是会累的" br {}
+            "所以呐,『钢铁意志』, 启动! ! !"
+        }
+    }
+}
+
+#[component]
+fn Galgame() -> Element {
+    rsx! {
+        div {
+            blockquote { "诸君, 我喜欢玩美少女恋爱游戏呐! !(?" }
+            "我喜欢 galgame" br {}
+            "我喜欢幼驯染线" br {}
+            "我喜欢青梅竹马不战而败的展开" br {}
+            "我喜欢告白失败转生修罗场" br {}
+            "我喜欢日常温柔推进" br {}
+            "我喜欢病娇崩坏暴走" br {}
+            "我喜欢 ntr 的心碎" br {}
+            "我喜欢 be 的绝望" br {}
+            "我喜欢从存档里拯救她的执念" br {}
+            br {}
+            "我爱那千回百转的选择分支" br {}
+            br {}
+            "我喜欢 GALGAME" br {}
+            br {}
+            "我喜欢每一次点击的紧张" br {}
+            "喜欢通宵刷文本的沉浸" br {}
+            "喜欢全CG收集时的满足" br {}
+            "喜欢通关后空虚的余韵" br {}
+            br {}
+            "它不是游戏" br {}
+            "是命运的模拟器" br {}
+            "————《The Ultimate Anthem of GALGAME》"
         }
     }
 }

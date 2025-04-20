@@ -9,7 +9,7 @@ pub struct State {
 
 pub static STATE: GlobalSignal<State> =
     Global::new(|| State {
-        content: "".into(),
+        content: "",
         hidden: true,
         timeout_handle: None,
     });
@@ -28,7 +28,7 @@ pub fn Notification() -> Element {
                 span { class: "text-2xl italic font-semibold", "藤原妹红:" }
                 span { class: "text-xl my-auto whitespace-pre", {content} }
             }
-            img { class: " border-warm-orange border-2 mx-1 w-25 my-auto", src: asset!("/assets/images/mokou.avif") }
+            img { class: " border-warm-orange border-2 mx-1 w-25 my-auto", src: "/assets/images/mokou.avif" }
         }
     }
 }

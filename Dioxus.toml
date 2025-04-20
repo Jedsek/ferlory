@@ -4,12 +4,13 @@ asset_dir = "assets"
 [web.app]
 
 # HTML title tag content
-title = "ferlora"
+title = "ferlory"
 
 [web.watcher]
 rebuild_html = true
 watch_path = [
   "src",
+  "content",
   "assets",
   "input.css",
   "Dioxus.toml"
