@@ -1,5 +1,5 @@
 [package]
-name = "ferlory_routes"
+name = "ferlory_utils"
 version = "0.1.0"
 authors = ["jedsek <jedsek@qq.com>"]
 edition = "2024"
@@ -8,7 +8,6 @@ edition = "2024"
 const_format = { version = "0.2.34", features = ["fmt"] }
 dioxus = { version = "0.6.3", features = ["fullstack", "router"] }
 ferlory_components = { path = "../components" }
-ferlory_utils= { path = "../utils" }
 slug = "0.1.6"
 phf = { version = "0.11", features = ["macros"] }
 gloo = "0.11.0"

@@ -1,5 +1,5 @@
 use dioxus::prelude::*;
-use crate::components::post_components::*;
+use ferlory_components::*;
 
 #[derive(Copy, Clone)]
 struct Card {

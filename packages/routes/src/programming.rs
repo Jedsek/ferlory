@@ -1,5 +1,6 @@
 use dioxus::prelude::*;
-use crate::{components::post_components::*, route::Route};
+use ferlory_components::*;
+use crate::Route;
 
 #[component]
 pub fn Programming() -> Element {

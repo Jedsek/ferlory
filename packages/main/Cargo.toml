@@ -1,23 +1,14 @@
 [package]
-name = "ferlory_routes"
+name = "ferlory_main"
 version = "0.1.0"
 authors = ["jedsek <jedsek@qq.com>"]
 edition = "2024"
 
 [dependencies]
-const_format = { version = "0.2.34", features = ["fmt"] }
 dioxus = { version = "0.6.3", features = ["fullstack", "router"] }
+ferlory_routes = { path = "../routes" }
 ferlory_components = { path = "../components" }
-ferlory_utils= { path = "../utils" }
-slug = "0.1.6"
-phf = { version = "0.11", features = ["macros"] }
-gloo = "0.11.0"
-rand = "0.9"
-getrandom = { version = "0.3", features = ["wasm_js"]}
-# reqwest = "0.12.12"
-# dioxus-typst = { path = "../dioxus-typst" }
-# typst = "0.13.0"
-# tokio = "1.44.1"
+ferlory_utils = { path = "../utils" }
 
 [build-dependencies]
 walkdir = "2.5.0"

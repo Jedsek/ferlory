@@ -1,7 +1,9 @@
 #![allow(unreachable_patterns, non_snake_case)]
 
+use dioxus::prelude::*;
+
 mod navbar;
-pub use navbar;
+pub use navbar::NavBar;
 
 mod home;
 pub use home::Home;
@@ -36,10 +38,6 @@ pub use single_post::SinglePost;
 mod other;
 pub use other::Other;
 
-
-use ferlory_components::routes::*;
-use ferlory_components::NavBar;
-use dioxus::prelude::*;
 
 #[derive(Debug, Clone, Routable, PartialEq)]
 #[rustfmt::skip]

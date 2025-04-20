@@ -1,0 +1,13 @@
+[package]
+name = "generated_typst"
+version = "0.1.0"
+authors = ["jedsek <jedsek@qq.com>"]
+edition = "2024"
+
+[dependencies]
+phf = { version = "0.11", features = ["macros"] }
+
+
+[build-dependencies]
+walkdir = "2.5.0"
+phf = { version = "0.11", features = ["macros"] }

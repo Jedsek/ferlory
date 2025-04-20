@@ -1,7 +1,7 @@
 use dioxus::prelude::*;
-use crate::components::post_components::*;
-use crate::route::Route;
-use crate::utils::notify_send;
+use ferlory_components::*;
+use ferlory_utils::notify_send;
+use crate::Route;
 
 #[component]
 pub fn Home() -> Element {
