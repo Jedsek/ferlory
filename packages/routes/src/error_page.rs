@@ -4,7 +4,7 @@ use dioxus::prelude::*;
 pub fn ErrorPage() -> Element {
     let mut state = use_signal(|| None);
     let idx = *state.read();
-    
+
     rsx! {
         div {
             class: "text-2xl w-fit mx-auto mt-2 sm:mt-4 *:mt-2",

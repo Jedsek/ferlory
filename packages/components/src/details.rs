@@ -5,8 +5,8 @@ pub fn Details(summary: Element, hidden: Option<bool>, children: Element) -> Ele
     let hidden = hidden.unwrap_or(true);
     let mut hidden = use_signal(|| hidden);
     let is_hidden = *hidden.read();
-    
-    rsx!{
+
+    rsx! {
         div {
             class: "my-3",
             class: "transition-all duration-500 ease-in-out",
@@ -26,4 +26,3 @@ pub fn Details(summary: Element, hidden: Option<bool>, children: Element) -> Ele
         }
     }
 }
-

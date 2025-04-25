@@ -2,7 +2,7 @@
 
 use dioxus::prelude::*;
 use ferlory_routes::Route;
-use ferlory_utils::{notify_send, launch_app};
+use ferlory_utils::{launch_app, notify_send};
 
 fn main() {
     launch_app(|| {
@@ -20,15 +20,14 @@ fn main() {
                 oncopy: move |_data| notify_send(Some("喂, 文本已经复制好了"), Some(1500)),
                 Router<Route> {}
             }
-            document::Stylesheet { href: "/assets/styles/tailwind.css" }
-            document::Stylesheet { href: "/assets/iconfonts/iconfont.css" }
-            document::Stylesheet { href: "/assets/styles/typst.css" }
+            document::Stylesheet { rel: "preload", href: "/assets/styles/tailwind.css" }
+            document::Stylesheet { rel: "preload", href: "/assets/iconfonts/iconfont.css" }
+            document::Stylesheet { rel: "preload", href: "/assets/styles/typst.css" }
             document::Stylesheet { href: "https://chinese-fonts-cdn.deno.dev/packages/maple-mono-cn/dist/MapleMono-CN-Regular/result.css" }
             document::Stylesheet { href: "https://chinese-fonts-cdn.deno.dev/packages/maple-mono-cn/dist/MapleMono-CN-Italic/result.css" }
         }
     })
 }
-
 
 #[server(endpoint = "static_routes")]
 async fn static_routes() -> Result<Vec<String>, ServerFnError> {

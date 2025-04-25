@@ -7,17 +7,16 @@ pub struct State {
     pub timeout_handle: Option<Timeout>,
 }
 
-pub static STATE: GlobalSignal<State> =
-    Global::new(|| State {
-        content: "",
-        hidden: true,
-        timeout_handle: None,
-    });
+pub static STATE: GlobalSignal<State> = Global::new(|| State {
+    content: "",
+    hidden: true,
+    timeout_handle: None,
+});
 
 #[component]
 pub fn Notification() -> Element {
     let content = STATE.read().content;
-    
+
     rsx! {
         div {
             hidden: STATE.read().hidden,
@@ -28,7 +27,7 @@ pub fn Notification() -> Element {
                 span { class: "text-2xl italic font-semibold", "藤原妹红:" }
                 span { class: "text-xl my-auto whitespace-pre", {content} }
             }
-            img { class: " border-warm-orange border-2 mx-1 w-25 my-auto", src: "/assets/images/mokou.avif" }
+            img { class: " border-warm-orange border-2 mx-1 w-25 my-auto", src: "../../../assets/images/mokou.avif" }
         }
     }
 }

@@ -10,7 +10,7 @@ html {
 }
 
 body {
-	@apply bg-ink-purple;
+	/* @apply bg-ink-purple; */
 }
 
 a {

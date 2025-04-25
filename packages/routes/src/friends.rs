@@ -17,7 +17,6 @@ pub fn Friends() -> Element {
     }
 }
 
-
 #[component]
 fn Friend(name: &'static str, avatar: &'static str, href: &'static str) -> Element {
     rsx! {

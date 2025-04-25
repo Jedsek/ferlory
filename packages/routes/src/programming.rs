@@ -1,27 +1,27 @@
+use crate::Route;
 use dioxus::prelude::*;
 use ferlory_components::*;
-use crate::Route;
 
 #[component]
 pub fn Programming() -> Element {
     rsx! {
         blockquote { "本页面记载一些计算机方面的技术文章" }
-        
+
         Intro {}
 
         SplitLine {}
-        
+
         H1 { text: "rust" }
-        Todo { completed: true, Link { to: Route::Categories { name: "rust-tui".into() }, "tui" } }
-        Todo { completed: true, Link { to: Route::SinglePost { name: "rust-common-errors".into() }, "rust中那些常见的错误" } }
-        Todo { completed: true, Link { to: Route::SinglePost { name: "rust-clap-intro".into() }, "用 clap-rs 写一个命令行" } }
-        Todo { completed: true, Link { to: Route::Categories { name: "rust-typed-magic".into() }, "rust中的类型魔法" } }
+        Todo { completed: true,  Link { to: Route::Categories { name: "rust-tui".into() }, "tui" } }
+        Todo { completed: true,  Link { to: Route::SinglePost { name: "rust-common-errors".into() }, "rust中那些常见的错误" } }
+        Todo { completed: true,  Link { to: Route::SinglePost { name: "rust-clap-intro".into() }, "用 clap-rs 写一个命令行" } }
+        Todo { completed: true,  Link { to: Route::Categories { name: "rust-typed-magic".into() }, "rust中的类型魔法" } }
         Todo { completed: false, Link { to: Route::Categories { name: "rust-gui".into() }, "gui(gtk4/iced/dioxus)" } }
         Todo { completed: false, Link { to: Route::Categories { name: "rust-atomics-and-locks".into() }, "并发中的原子与锁" } }
 
         Details {
             summary: rsx! { "Other(todo)" },
-            
+
             H1 { text: "ocaml" }
 
             H1 { text: "gleam" }
@@ -32,7 +32,7 @@ pub fn Programming() -> Element {
         }
 
         H1 { id: "desktop-beauty", text: "桌面美化" }
-        Todo { completed: true, Link { to: Route::Categories { name: "sicp-answers".into() }, "GNOME 入坑指南" } }
+        Todo { completed: true, Link { to: Route::Categories { name: "gnome".into() }, "GNOME 入坑指南" } }
 
 
         H1 { text: "SICP" }
@@ -43,10 +43,6 @@ pub fn Programming() -> Element {
 
         H1 { id: "text-editing", text: "文本编辑" }
         Todo { completed: true, Link { to: Route::Categories { name: "zed-blog-translation".into() }, "Zed's Blog(博客翻译)" } }
-
-
-        // PostCard { serioes: "rust-tui", "rust-tui" }
-        // TypstPost { path: "home" }
     }
 }
 

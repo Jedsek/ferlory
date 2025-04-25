@@ -38,7 +38,6 @@ pub use single_post::SinglePost;
 mod other;
 pub use other::Other;
 
-
 #[derive(Debug, Clone, Routable, PartialEq)]
 #[rustfmt::skip]
 pub enum Route {
@@ -87,7 +86,7 @@ impl Route {
             Self::Friends {} => "友链",
             Self::About {} => "关于",
             Self::ErrorPage {} => "错误",
-            _ => unreachable!()
+            _ => unreachable!(),
         }
     }
 
@@ -100,7 +99,7 @@ impl Route {
             Self::Friends {} => "friends",
             Self::About {} => "about",
             Self::ErrorPage {} => "error",
-            _ => unreachable!()
+            _ => unreachable!(),
         }
     }
 
@@ -113,7 +112,7 @@ impl Route {
             Self::Friends {} => "/friends",
             Self::About {} => "/about",
             Self::ErrorPage {} => "/error",
-            _ => unreachable!()
+            _ => unreachable!(),
         }
     }
 }

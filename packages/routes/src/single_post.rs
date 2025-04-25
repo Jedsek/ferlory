@@ -6,4 +6,3 @@ pub fn SinglePost(name: String) -> Element {
         blockquote { "喜悦, 悲伤, 记载于此" }
     }
 }
-

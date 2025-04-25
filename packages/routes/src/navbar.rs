@@ -1,6 +1,6 @@
+use crate::Route;
 use dioxus::prelude::*;
 use ferlory_components::{Footer, Notification};
-use crate::Route;
 
 #[component]
 pub fn NavBar() -> Element {
@@ -33,7 +33,7 @@ pub fn NavBar() -> Element {
 #[component]
 pub fn NavItem(route: Route, name: &'static str) -> Element {
     let current_route = use_route::<Route>();
-    
+
     rsx! {
         Link {
             class: if current_route == route { "no-underline! text-fuchsia-400" } else { "no-underline!" },

@@ -24,5 +24,3 @@ pub fn launch_app(app: fn() -> Element) {
         })
         .launch(app);
 }
-
-

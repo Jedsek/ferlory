@@ -29,4 +29,3 @@ pub fn get_config_file_path(dir: &Path, config_path: &Path) -> (PathBuf, PathBuf
 
     (root_dir.to_path_buf(), config_file)
 }
-

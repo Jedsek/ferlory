@@ -6,5 +6,3 @@ pub fn SeriesPost(series: String, name: String) -> Element {
         blockquote { "喜悦, 悲伤, 记载于此" }
     }
 }
-
-

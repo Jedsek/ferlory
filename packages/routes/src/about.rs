@@ -58,7 +58,7 @@ pub fn About() -> Element {
 
         H1 { id: "清贫", text: "以『清贫』之名" }
         Qing {}
-        
+
         H1 { id: "钢铁意志", text: "加缪式的钢铁意志\n& Cosplay堂吉柯德" }
         IronWill {}
 
@@ -70,10 +70,9 @@ pub fn About() -> Element {
 #[component]
 fn Arcana() -> Element {
     let random_index = rand::random_range(0_u8..=21_u8);
-    let mut card_signal = use_signal(move ||  Card::new(random_index));
+    let mut card_signal = use_signal(move || Card::new(random_index));
     let card = *card_signal.read();
-    
-   
+
     rsx! {
         div {
             class: "border-2 border-cyan-600 px-2 pt-2 pb-1 flex flex-col w-fit",
@@ -128,7 +127,6 @@ fn Arcana() -> Element {
     }
 }
 
-
 #[component]
 fn Qing() -> Element {
     rsx! {
@@ -142,7 +140,7 @@ fn Qing() -> Element {
             "倘若污浊沾染我身, 那我想必会很难过很屈辱, 然后奋起反抗吧" br {}
             "亮丽且卑劣, 蒙尘且荣耀, 但我永远也做不到纯粹的二选一" br {}
             "怀着向往荣誉之心, 尽量努力让自己避免卑劣, 仅此而已" br {}
-            br {} 
+            br {}
             "曾经..." br {}
             "我和你一样, 也是个冒险者..." br {}
             "『直到我的膝盖中了一剑』" br {}

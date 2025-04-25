@@ -1,7 +1,7 @@
+use crate::Route;
 use dioxus::prelude::*;
 use ferlory_components::*;
 use ferlory_utils::notify_send;
-use crate::Route;
 
 #[component]
 pub fn Home() -> Element {
@@ -18,7 +18,8 @@ pub fn Home() -> Element {
             }
 
             Details {
-                summary: rsx! { span { class: "text-sky-500", "我是谁?" } },
+                // summary: rsx! { span { class: "text-sky-500", "我是谁?" } },
+                summary: rsx! { "我是谁?" },
                 li { "网名有 Jedsek, 柳下川, 清贫 等" }
                 li { "爱好 ACGN(Animation <=> Comic <=> Game <=> Novel), 游戏偏好 2D, 如 SANABI(闪避刺客), Hollow-knights(空洞骑士)等" }
                 li { "追寻艺术之人, 兴趣使然之人, 沉溺幻想之人, 拥抱孤独之人, 堕入虚无之人, 热爱世界之人" }
@@ -28,7 +29,8 @@ pub fn Home() -> Element {
             }
 
             Details {
-                summary: rsx! { span { class: "text-pink-500", "博客介绍" } },
+                // summary: rsx! { span { class: "text-pink-500", "博客介绍" } },
+                summary: rsx! { "博客介绍" },
                 li { "这里是我的个人博客, 内容包括计算机方面的文章, 自己写的小说, 一些 galgame 中的语录, 乱七八糟的想法等" }
                 li { "本站使用 dioxus 构建, 迁移历史为 hexo-next -> zola -> dioxus " del { "(做到了 pure rust/wasm && no javascript)" } }
                 li { del { "手机/平板上有些地方可能不怎么适配 (因为我也前端恐惧症, 而且......我懒得改啦!!!)" } }
@@ -36,7 +38,8 @@ pub fn Home() -> Element {
             }
 
             Details {
-                summary: rsx!{ span { class: "text-slate-500", "乱七八糟的想法与吐槽" } },
+                // summary: rsx!{ span { class: "text-slate-500", "乱七八糟的想法与吐槽" } },
+                summary: rsx!{ "乱七八糟的想法与吐槽" },
                 li { "受不了了, css 好难, 我一顿乱糊结果居然 ok 了, 而且标准也很杂乱啊啊啊啊" }
                 li { "麻麻的, 高中牲果然不是人, 大好的国庆, 大好的假期, 3天, 噫! 3天! 哈哈呵呵呵呵哈哈哈哈哈哈" }
                 li { "本站还在飞速优化优化inging!!! 等我看完小说打会音游吃掉手里的串串就打开电脑敲代...等等, 新番更新日?! 受不鸟了" }
@@ -48,10 +51,10 @@ pub fn Home() -> Element {
                 Todo { completed: true, "在较大屏幕上显示右上角的弹幕" }
                 Todo { completed: true, "从 tailwind-v3 迁移至 tailwind-v4" }
                 Todo { completed: true, "适配移动端适配, 优化手机上的体验" }
-                Todo { completed: false, "静态的代码高亮, 去除 highlight.js" }
+                Todo { completed: false, "静态代码高亮, 使用 syntect, 去除 highlight.js" }
                 Todo { completed: false, "类似 " a { href: "https://shaunlebron.github.io/parinfer/", "parinfer" } " 的方案与 lisp/scheme 代码进行交互" }
                 Todo { completed: false, "清除史山与重构代码 " del { "(遥遥无期是也)" } }
-                
+
             }
         }
     }
@@ -178,8 +181,8 @@ fn Navigation() -> Element {
 #[component]
 fn NavigationItem(route: Route, tip: &'static str, icon: Element) -> Element {
     let mut state = use_context::<Signal<Option<&'static str>>>();
-    
-    rsx!{
+
+    rsx! {
         div {
             onmouseenter: move |_data| {
                 state.set(Some(route.route_name()));
@@ -198,5 +201,3 @@ fn NavigationItem(route: Route, tip: &'static str, icon: Element) -> Element {
         }
     }
 }
-
-
