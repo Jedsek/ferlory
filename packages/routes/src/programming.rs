@@ -1,4 +1,4 @@
-use crate::Route;
+use crate::utils::link_gen;
 use dioxus::prelude::*;
 use ferlory_components::*;
 
@@ -12,12 +12,12 @@ pub fn Programming() -> Element {
         SplitLine {}
 
         H1 { text: "rust" }
-        Todo { completed: true,  Link { to: Route::Categories { name: "rust-tui".into() }, "tui" } }
-        Todo { completed: true,  Link { to: Route::SinglePost { name: "rust-common-errors".into() }, "rust中那些常见的错误" } }
-        Todo { completed: true,  Link { to: Route::SinglePost { name: "rust-clap-intro".into() }, "用 clap-rs 写一个命令行" } }
-        Todo { completed: true,  Link { to: Route::Categories { name: "rust-typed-magic".into() }, "rust中的类型魔法" } }
-        Todo { completed: false, Link { to: Route::Categories { name: "rust-gui".into() }, "gui(gtk4/iced/dioxus)" } }
-        Todo { completed: false, Link { to: Route::Categories { name: "rust-atomics-and-locks".into() }, "并发中的原子与锁" } }
+        Todo { completed: true,  {link_gen::next_category("rust-tui", "tui")} }
+        Todo { completed: true,  {link_gen::next_single("rust-common-errors", "rust那些常见的错误")} }
+        Todo { completed: true,  {link_gen::next_single("rust-clap-intro", "用 clap-rs 写一个命令行")} }
+        Todo { completed: true,  {link_gen::next_category("rust-typed-magic", "rust中的类型魔法")} }
+        Todo { completed: false, {link_gen::next_category("rust-gui", "gui(gtk4/iced/dioxus)")} }
+        Todo { completed: false, {link_gen::next_category("rust-atomics-and-locks", "并发中的原子与锁")} }
 
         Details {
             summary: rsx! { "Other(todo)" },
@@ -32,17 +32,17 @@ pub fn Programming() -> Element {
         }
 
         H1 { id: "desktop-beauty", text: "桌面美化" }
-        Todo { completed: true, Link { to: Route::Categories { name: "gnome".into() }, "GNOME 入坑指南" } }
+        Todo { completed: true, {link_gen::next_single("gnome", "GNOME 入坑指南")} }
 
 
         H1 { text: "SICP" }
         "关于 SICP(计算机程序的构造与解释) 这本书的思考, 以及课后习题答案" br {}
         "暂时先做个目录, 或许是以年为单位进行更新, 有时间再说吧 QAQ" br {}
         br {}
-        Todo { completed: true, Link { to: Route::Categories { name: "sicp-answers".into() }, "解题集" } }
+        Todo { completed: true, {link_gen::next_category("sicp-answers", "解题集")} }
 
         H1 { id: "text-editing", text: "文本编辑" }
-        Todo { completed: true, Link { to: Route::Categories { name: "zed-blog-translation".into() }, "Zed's Blog(博客翻译)" } }
+        Todo { completed: true, {link_gen::next_category("zed-blog-translation", "Zed's Blog(博客翻译)")} }
     }
 }
 

@@ -2,6 +2,8 @@
 
 use dioxus::prelude::*;
 
+pub mod utils;
+
 mod navbar;
 pub use navbar::NavBar;
 
@@ -58,11 +60,13 @@ pub enum Route {
         #[route("/categories/:name")]
         Categories { name: String },
 
-        #[route("/posts/:series/:name")]
-        SeriesPost { series: String, name: String },
+        #[nest("/posts")]
+            #[route("/:series/:name")]
+            SeriesPost { series: String, name: String },
 
-        #[route("/posts/:name")]
-        SinglePost { name: String },
+            #[route("/:name")]
+            SinglePost { name: String },
+        #[end_nest]
 
         #[route("/404/")]
         ErrorPage {},

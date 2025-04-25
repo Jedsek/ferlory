@@ -14,7 +14,7 @@ body {
 }
 
 a {
-	@apply underline font-semibold;
+	@apply underline font-medium;
 }
 
 p {

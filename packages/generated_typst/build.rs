@@ -1,8 +1,10 @@
+#[cfg(not(debug_assertions))]
+use minify_html::{minify, Cfg};
+
 use std::{
     path::{Path, PathBuf},
     process::Command,
 };
-use minify_html::{minify, Cfg};
 use walkdir::WalkDir;
 
 fn main() {
@@ -50,6 +52,7 @@ fn get_post(file_path: &Path) -> String {
         .stdout;
 
     // minify html
+    #[cfg(not(debug_assertions))]
     let output = minify(&output, &Cfg::new());
 
     let output = String::from_utf8_lossy(&output).to_string();

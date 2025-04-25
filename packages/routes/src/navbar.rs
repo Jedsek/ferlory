@@ -1,6 +1,7 @@
 use crate::Route;
 use dioxus::prelude::*;
 use ferlory_components::{Footer, Notification};
+use ferlory_utils::notify_send;
 
 #[component]
 pub fn NavBar() -> Element {
@@ -10,7 +11,6 @@ pub fn NavBar() -> Element {
                 class: "border-b-2 w-full border-slate-700 bg-ink-purple z-10 fixed top-0",
                 div {
                     class: "flex flex-row w-fit mx-auto *:m-1",
-                    class: "",
                     class: "sm:w-auto sm:*:mx-2",
                     NavItem { route: Route::Home {}, name: "首页" }
                     NavItem { route: Route::Programming {}, name: "编程" }
@@ -21,7 +21,9 @@ pub fn NavBar() -> Element {
                     NavItem { route: Route::ErrorPage {}, name: "错误" }
                 }
             }
-            div { class: "pt-10 bg-ink-purple px-2",
+            div {
+                class: "min-h-screen pt-10 bg-ink-purple px-2 sm:px-3",
+                oncopy: move |_data| notify_send(Some("喂, 文本已经复制好了"), Some(1500)),
                 Outlet::<Route> {}
                 Footer {}
             }
