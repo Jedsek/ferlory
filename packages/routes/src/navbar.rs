@@ -35,12 +35,19 @@ pub fn NavBar() -> Element {
 #[component]
 pub fn NavItem(route: Route, name: &'static str) -> Element {
     let current_route = use_route::<Route>();
+    let is_selected = match (&route, &current_route) {
+        (r1, r2) if r1 == r2 => true, // 判断 route 和 current_route 相等
+        (Route::Programming {}, Route::Categories {..})
+        | (Route::Programming {}, Route::SeriesPost {..})
+        | (Route::Programming {}, Route::SinglePost {..}) => true,
+        _ => false,
+    };
 
     rsx! {
         Link {
-            class: if current_route == route { "no-underline! text-fuchsia-400" } else { "no-underline!" },
+            class: if is_selected { "no-underline! text-fuchsia-400" } else { "no-underline!" },
             to: route.clone(),
-            if current_route == route {
+            if is_selected {
                 i { class: "iconfont icon-arrow-right-thin" }
             }
             {name}
