@@ -1,10 +1,9 @@
-assets/content/*
-assets/iconfonts/*
-!assets/iconfonts/iconfont.css
-assets/fonts/*/*.woff2
-assets/images/*
-assets/favicon.ico
-assets/header.svg
+packages/main/assets/iconfonts/*
+!packages/main/assets/iconfonts/iconfont.css
+packages/main/assets/fonts/*/*.woff2
+packages/main/assets/images/*
+packages/main/assets/favicon.ico
+packages/main/assets/header.svg
 screenshots/*
 package.json
 package-lock.json
